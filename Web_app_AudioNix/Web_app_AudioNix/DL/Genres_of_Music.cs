@@ -8,7 +8,7 @@ namespace Web_app_AudioNix.DL
 {
     class Genres_of_Music
     {
-        internal int ID_Genre;
-        internal int ID_Song;
+        internal int ID_Genre { get; set; }
+        internal int ID_Song { get; set; }
     }
 }

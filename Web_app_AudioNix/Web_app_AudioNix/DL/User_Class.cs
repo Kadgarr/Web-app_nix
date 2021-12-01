@@ -8,9 +8,9 @@ namespace Web_app_AudioNix.DL
 {
     class User_Class
     {
-        internal int ID_User;
-        internal string email;
-        internal string login;
-        internal int id_song;
+        internal int ID_User { get; set; }
+        internal string email { get; set; }
+        internal string login { get; set; }
+        internal int id_song { get; set; }
     }
 }

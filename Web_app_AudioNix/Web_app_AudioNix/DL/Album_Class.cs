@@ -8,9 +8,9 @@ namespace Web_app_AudioNix.DL
 {
     class Album_Class
     {
-        internal int ID_Album;
-        internal string name_of_album;
-        internal DateTime date_of_release;
-        internal int id_singer;
+        internal int ID_Album { get; set; }
+        internal string name_of_album { get; set; }
+        internal DateTime date_of_release { get; set; }
+        internal int id_singer { get; set; }
     }
 }
