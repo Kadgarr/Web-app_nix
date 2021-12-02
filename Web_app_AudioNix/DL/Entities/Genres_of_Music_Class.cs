@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Web_app_AudioNix.DL
 {
-    class Genres_of_Music
+    class Genres_of_Music_Class
     {
-        internal int ID_Genre { get; set; }
-        internal int ID_Song { get; set; }
+        protected internal int ID_Genre { get; set; }
+        protected internal int ID_Song { get; set; }
     }
 }

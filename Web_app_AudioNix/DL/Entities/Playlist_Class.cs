@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Web_app_AudioNix.DL
 {
-    class Playlist_of_User_Class
+    class Playlist_Class
     {
-        internal int ID_User { get; set; }
-        internal int ID_Song { get; set; }
-        internal int ID_Playlist { get; set; }
+        protected internal int ID_Playlist { get; set; }
+        protected internal string name_of_playlist { get; set; }
     }
 }

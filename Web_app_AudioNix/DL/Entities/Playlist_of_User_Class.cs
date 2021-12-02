@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Web_app_AudioNix.DL
+{
+    class Playlist_of_User_Class
+    {
+        protected internal int ID_User { get; set; }
+        protected internal int ID_Song { get; set; }
+        protected internal int ID_Playlist { get; set; }
+    }
+}
