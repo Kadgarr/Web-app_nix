@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Web_app_AudioNix.DL
 {
-    class User_Class
+    public class User_Class
     {
         protected internal int ID_User { get; set; }
         protected internal string email { get; set; }

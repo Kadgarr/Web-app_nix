@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Web_app_AudioNix.DL
 {
-    class Song_Class
+    public class Song_Class
     {
         protected internal int ID_Song { get; set; }
         protected internal string name_of_song { get; set; }
