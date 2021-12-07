@@ -12,5 +12,8 @@ namespace Web_app_AudioNix.DL
         protected internal string name_of_singer { get; set; }
         protected internal string image { get; set; }
         protected internal string description { get; set; }
+
+        protected internal List<Song_Class> songs { get; set; }
+        protected internal List<Album_Class> albums { get; set; }
     }
 }

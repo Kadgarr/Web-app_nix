@@ -11,5 +11,9 @@ namespace Web_app_AudioNix.DL
         protected internal int ID_User { get; set; }
         protected internal int ID_Song { get; set; }
         protected internal int ID_Playlist { get; set; }
+
+        protected internal User_Class ID_UserNavigation { get; set; }
+        protected internal Song_Class ID_SongNavigation { get; set; }
+        protected internal Playlist_Class ID_PlaylistNavigation { get; set; }
     }
 }

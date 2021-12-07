@@ -12,5 +12,6 @@ namespace Web_app_AudioNix.DL
         protected internal string email { get; set; }
         protected internal string login { get; set; }
         protected internal int id_song { get; set; }
+        protected internal List<Playlist_of_User_Class> playlists { get; set; }
     }
 }
