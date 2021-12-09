@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{9A4B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "PL\PL.csproj", "{A5975ACD-262B-451E-A62E-4836FB565448}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{F9DA630E-CF8D-46F8-941F-2781C1523B51}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{A5975ACD-262B-451E-A62E-4836FB565448}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5975ACD-262B-451E-A62E-4836FB565448}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5975ACD-262B-451E-A62E-4836FB565448}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F9DA630E-CF8D-46F8-941F-2781C1523B51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9DA630E-CF8D-46F8-941F-2781C1523B51}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F9DA630E-CF8D-46F8-941F-2781C1523B51}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9DA630E-CF8D-46F8-941F-2781C1523B51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
