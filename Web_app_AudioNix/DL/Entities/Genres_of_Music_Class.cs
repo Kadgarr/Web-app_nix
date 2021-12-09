@@ -10,5 +10,8 @@ namespace Web_app_AudioNix.DL
     {
         protected internal int ID_Genre { get; set; }
         protected internal int ID_Song { get; set; }
+
+        protected internal Song_Class ID_GenreNavigation{get;set;}
+        protected internal Song_Class ID_SongNavigation { get; set; }
     }
 }

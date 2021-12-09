@@ -18,5 +18,8 @@ namespace Web_app_AudioNix.DL
         [Required]
         [StringLength(500, MinimumLength = 20, ErrorMessage = "Введите допустимое количество символов (минимум 20)")]
         protected internal string description { get; set; }
+
+        protected internal List<Song_Class> songs { get; set; }
+        protected internal List<Album_Class> albums { get; set; }
     }
 }

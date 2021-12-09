@@ -18,5 +18,7 @@ namespace Web_app_AudioNix.DL
        [RegularExpression("{0:dd/MM/yyyy}", ErrorMessage = "Введите дату релиза корректно!")]
        protected internal DateTime date_of_release { get; set; }
        protected internal int id_singer { get; set; }
+
+       protected internal Singer_Class id_singerNavigation { get; set; }
     }
 }
