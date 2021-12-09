@@ -10,9 +10,9 @@ namespace Web_app_AudioNix.DL
     public class Playlist_Class
     {
         [Required]
-        protected internal int ID_Playlist { get; set; }
+        public int ID_Playlist { get; set; }
         [Required]
         [StringLength(50, MinimumLength = 6, ErrorMessage = "Введите допустимое количество символов (минимум 6)")]
-        protected internal string name_of_playlist { get; set; }
+        public string name_of_playlist { get; set; }
     }
 }

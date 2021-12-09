@@ -24,10 +24,10 @@ namespace Web_app_AudioNix.DL
         public int id_album { get; set; }
         public int id_singer { get; set; }
 
-        protected internal Singer_Class ID_UserNavigation { get; set; }
-        protected internal Album_Class ID_AlbumNavigation { get; set; }
+        public Singer_Class ID_UserNavigation { get; set; }
+        public Album_Class ID_AlbumNavigation { get; set; }
 
-        protected internal List<Genres_of_Music_Class> genres_music { get; set; }
+        public List<Genres_of_Music_Class> genres_music { get; set; }
 
     }
 }
