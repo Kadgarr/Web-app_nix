@@ -7,19 +7,21 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Web_app_AudioNix.DL
 {
-    public class User_Class
+    public class User
     {
         [Required(ErrorMessage = "Укажите id",AllowEmptyStrings =false)]
-        public string ID_User { get; set; }
+        public Guid UserId { get; set; }
         [Required(ErrorMessage = "Укажите электронный адресс")]
         [EmailAddress]
-        public string email { get; set; }
+        public string Email { get; set; }
         [Required(ErrorMessage = "Вы вышли за пределы допустимого кол-ва значений")]
         [StringLength(40, MinimumLength = 3)]
-        public string login { get; set; }
+        public string Login { get; set; }
         [Required]
         [StringLength(25, MinimumLength = 6, ErrorMessage = "Введите допустимое количество символов (минимум 6)")]
-        public string password { get; set; }
-        public int id_song { get; set; }
+        public string Password { get; set; }
+
+        
+       
     }
 }
