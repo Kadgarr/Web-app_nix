@@ -4,11 +4,10 @@ using System.Text;
 
 namespace DL.IRepository
 {
-    interface IUserAdminAction
+    interface IRepository<T> where T:class
     {
         public void Download();
         public void View();
-        public void Search();
         public void AddSongToPlaylist();
         public void DeleteSongFromPlaylist();
         public void Registration();
