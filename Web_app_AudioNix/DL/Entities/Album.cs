@@ -17,8 +17,6 @@ namespace Web_app_AudioNix.DL
        [Required]
        [RegularExpression(@"{0:dd/MM/yyyy}", ErrorMessage = "Введите дату релиза корректно!")]
        public DateTime Date_of_release { get; set; }
-
-
        public Singer SingerNavigation { get; set; }
     }
 }
