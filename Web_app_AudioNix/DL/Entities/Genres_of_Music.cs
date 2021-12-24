@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Web_app_AudioNix.DL
+namespace DL.Entities
 {
     public class Genres_of_Music
     {

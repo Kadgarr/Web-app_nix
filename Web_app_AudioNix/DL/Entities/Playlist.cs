@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace Web_app_AudioNix.DL
+namespace DL.Entities
 {
     public class Playlist
     {
@@ -14,5 +14,7 @@ namespace Web_app_AudioNix.DL
         [Required]
         [StringLength(50, MinimumLength = 6, ErrorMessage = "Введите допустимое количество символов в диапазоне от 6 до 50")]
         public string Name_of_playlist { get; set; }
+        [Required]
+        public bool LikeCheck { get; set; }
     }
 }

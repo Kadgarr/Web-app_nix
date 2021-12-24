@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 
-namespace Web_app_AudioNix.DL
+namespace DL.Entities
 {
     public class Song
     {
