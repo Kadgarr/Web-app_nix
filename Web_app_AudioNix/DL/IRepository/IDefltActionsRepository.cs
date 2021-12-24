@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DL.IRepository
 {
-    interface IRepository<T> where T:class
+    interface IDefltActionsRepository<T> where T:class
     {
         public void Download();
         public void View();
