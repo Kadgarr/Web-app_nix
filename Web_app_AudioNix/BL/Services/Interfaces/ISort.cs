@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DL.Entities;
+using BL.DtoEntities;
 namespace BL.Services.Interfaces
 {
     interface ISort<T> where T:class
     {
         IEnumerable<T> SortByInc();
         IEnumerable<T> SortByDesc();
-        IEnumerable<T> SearchByItem(string name);
+        IEnumerable<T> SearchByItem(string item);
         IEnumerable<T> GetAll();
 
     }

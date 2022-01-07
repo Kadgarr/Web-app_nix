@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DL.Entities;
+using BL.DtoEntities;
 namespace BL.Services.Interfaces
 {
     interface ISong
     {
         
-        IEnumerable<Song> SortByDate();
-        IEnumerable<Song> SortMostPopular();
+        IEnumerable<SongDTO> SortByDate();
+        IEnumerable<SongDTO> SortMostPopular();
         void ViewSong(Guid id_song);
         void Download();
-        IEnumerable<Song> SearchSong(string nameSong);
+        IEnumerable<SongDTO> SearchSong(string nameSong);
 
 
     }

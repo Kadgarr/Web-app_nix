@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DL.Entities;
+using BL.DtoEntities;
 
 namespace BL.Services.Interfaces
 {
@@ -9,7 +9,7 @@ namespace BL.Services.Interfaces
     {
         void ChangeName(Guid id_playlist);
         void ViewPlaylist(Guid id_playlist);
-        IEnumerable<Playlist> SortByFavourite();
+        IEnumerable<PlaylistDTO> SortByFavourite();
 
     }
 }
