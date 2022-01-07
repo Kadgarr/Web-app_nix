@@ -9,9 +9,6 @@ namespace BL.Services.Interfaces
     {
         void ChangeName(Guid id_playlist);
         void ViewPlaylist(Guid id_playlist);
-        IEnumerable<Playlist> GetAll();
-        IEnumerable<Playlist> SortByInc();
-        IEnumerable<Playlist> SortByDesc();
         IEnumerable<Playlist> SortByFavourite();
 
     }
