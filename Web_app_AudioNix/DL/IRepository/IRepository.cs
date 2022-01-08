@@ -10,7 +10,7 @@ namespace DL.IRepository
         public void Add(T item);
         public void Delete(T item);
         public void Change(Guid id);
-        public List<T> GetList();
+        public IEnumerable<T> GetList();
         
     }
 }

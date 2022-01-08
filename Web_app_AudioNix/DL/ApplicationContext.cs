@@ -8,6 +8,12 @@ namespace DL
 {
     public class ApplicationContext : DbContext
     {
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
+           : base(options)
+        {
+            //Database.EnsureDeleted();
+            Database.EnsureCreated();
+        }
         public DbSet<Album> Albums { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Genres_of_Music> Genres_of_Music { get; set; }
@@ -16,6 +22,7 @@ namespace DL
         public DbSet<Singer> Singers { get; set; }
         public DbSet<Song> Songs { get; set; }
         public DbSet<User> Users { get; set; }
+
         public ApplicationContext()
         {
             Database.EnsureCreated();
