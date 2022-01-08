@@ -26,6 +26,7 @@ namespace PL
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new AutoMapperProfile());

@@ -5,7 +5,7 @@ namespace BL.Services.Interfaces
 {
     interface IGenre
     {
-        IEnumerable<> SortByInc();
+        void SortByInc();
         void SortByDesc();
         void SearchByGenre();
 
