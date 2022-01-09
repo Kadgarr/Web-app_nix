@@ -10,6 +10,7 @@ namespace BL.Services.Interfaces
         void ChangeName(Guid id_playlist);
         void ViewPlaylist(Guid id_playlist);
         IEnumerable<PlaylistDTO> SortByFavourite();
+        IEnumerable<Playlist_of_UserDTO> SearchByItem(string item);
 
     }
 }

@@ -8,36 +8,35 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DL.Repository
 {
-    public class GenreRepository : IRepository<Genre>
+    public class SongsRepository : IRepository<Song>
     {
         ApplicationContext db = new ApplicationContext();
 
-
-        public void Add(Genre item)
+        public void Add(Song item)
         {
-            db.Genres.Add(item);
+            db.Songs.Add(item);
             db.SaveChanges();
         }
 
-        public void Change(Genre item)
+        public void Change(Song item)
         {
             db.Attach(item).State = EntityState.Modified;
             db.SaveChanges();
         }
 
-        public void Delete(Genre item)
+        public void Delete(Song item)
         {
-            db.Genres.Remove(item);
+            db.Songs.Remove(item);
         }
 
-        public Genre GetItem(Guid item)
+        public Song GetItem(Guid item)
         {
-            return db.Genres.Find(item);
+            return db.Songs.Find(item);
         }
 
-        public IEnumerable<Genre> GetList()
+        public IEnumerable<Song> GetList()
         {
-            return db.Genres.ToList();
+            return db.Songs.ToList();
         }
     }
 }

@@ -9,9 +9,10 @@ namespace BL.Services.Interfaces
         
         IEnumerable<SongDTO> SortByDate();
         IEnumerable<SongDTO> SortMostPopular();
-        void ViewSong(Guid id_song);
+        SongDTO ViewSong(Guid id_song);
         void Download();
         IEnumerable<SongDTO> SearchSong(string nameSong);
+        IEnumerable<Genres_of_MusicDTO> SearchByItem(string item);
 
 
     }

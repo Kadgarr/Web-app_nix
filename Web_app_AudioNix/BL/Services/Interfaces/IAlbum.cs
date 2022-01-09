@@ -7,7 +7,7 @@ namespace BL.Services.Interfaces
 {
     interface IAlbum
     {
-        IEnumerable<AlbumDTO> LookListSongs(Guid id_album);
-        void SearchByAlbum(string name);
+        IEnumerable<SongDTO> LookListSongs(Guid id_album);
+        
     }
 }

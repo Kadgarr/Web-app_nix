@@ -4,11 +4,10 @@ using System.Text;
 using BL.DtoEntities;
 namespace BL.Services.Interfaces
 {
-    interface ISort<T> where T:class
+    interface ISort<T> where T:class 
     {
         IEnumerable<T> SortByInc();
         IEnumerable<T> SortByDesc();
-        IEnumerable<T> SearchByItem(string item);
         IEnumerable<T> GetAll();
 
     }
