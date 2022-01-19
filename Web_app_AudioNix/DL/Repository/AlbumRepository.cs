@@ -15,13 +15,12 @@ namespace DL.Repository
         public void Add(Album item)
         {
             db.Albums.Add(item);
-            db.SaveChanges();
         }
 
         public void Change(Album item)
         {
             db.Attach(item).State = EntityState.Modified;
-            db.SaveChanges();
+         
         }
 
         public void Delete(Album item)

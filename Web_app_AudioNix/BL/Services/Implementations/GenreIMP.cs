@@ -6,15 +6,14 @@ using BL.DtoEntities;
 using AutoMapper;
 using System.Linq;
 using BL.Mapping;
-using DL.Repository;
-using DL.Entities;
+using DL;
 
 namespace BL.Services.Implementations
 {
     public class GenreIMP : ISort<GenreDTO> 
     {
         private readonly IMapper _mapper;
-        GenreRepository genreRepository = new GenreRepository();
+        UnityOfWork unityOfWork = new UnityOfWork();
         
 
         public GenreIMP()
@@ -27,7 +26,7 @@ namespace BL.Services.Implementations
         }
         public IEnumerable<GenreDTO> GetAll()
         {
-            var list = _mapper.Map<List<GenreDTO>>(genreRepository.GetList());
+            var list = _mapper.Map<List<GenreDTO>>(unityOfWork.GenresRep.GetList());
 
             return list;
         }
@@ -44,7 +43,7 @@ namespace BL.Services.Implementations
 
         public IEnumerable<GenreDTO> SortByDesc()
         {
-            var list = _mapper.Map<List<GenreDTO>>(genreRepository.GetList());
+            var list = _mapper.Map<List<GenreDTO>>(unityOfWork.GenresRep.GetList());
 
             var sortedlist = list.OrderByDescending(l => l.Name_of_Genre);
 
@@ -53,7 +52,7 @@ namespace BL.Services.Implementations
 
         public IEnumerable<GenreDTO> SortByInc()
         {
-            var list = _mapper.Map<List<GenreDTO>>(genreRepository.GetList());
+            var list = _mapper.Map<List<GenreDTO>>(unityOfWork.GenresRep.GetList());
 
             var sortedlist = list.OrderBy(l => l.Name_of_Genre);
 
