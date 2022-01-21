@@ -10,8 +10,11 @@ namespace DL.Repository
 {
     public class SingerRepository : IRepository<Singer>
     {
-        ApplicationContext db = new ApplicationContext();
-
+        private ApplicationContext db;
+        public SingerRepository(ApplicationContext db)
+        {
+            this.db = db;
+        }
         public void Add(Singer item)
         {
             db.Singers.Add(item);

@@ -13,11 +13,11 @@ namespace BL.Services.Implementations
     public class UserIMP : ISort<UserDTO>, IActionUser
     {
         private readonly IMapper _mapper;
-        UnityOfWork unityOfWork = new UnityOfWork();
-        
+        private UnityOfWork unityOfWork;
 
-        public UserIMP()
+        public UserIMP(ApplicationContext db)
         {
+            unityOfWork = new UnityOfWork(db);
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new AutoMapperProfile());

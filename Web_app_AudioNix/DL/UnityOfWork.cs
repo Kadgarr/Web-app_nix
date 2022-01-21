@@ -8,8 +8,12 @@ namespace DL
 {
     public class UnityOfWork 
     {
-        ApplicationContext db = new ApplicationContext();
+        private ApplicationContext db;
 
+        public UnityOfWork(ApplicationContext db)
+        {
+            this.db = db;
+        }
         AlbumRepository albumRepository;
         GenreRepository genreRepository;
         SongRepository songsRepository;
@@ -24,7 +28,7 @@ namespace DL
             get
             {
                 if (albumRepository == null)
-                    albumRepository = new AlbumRepository();
+                    albumRepository = new AlbumRepository(db);
                 return albumRepository;
             }
         }
@@ -33,7 +37,7 @@ namespace DL
             get
             {
                 if (songsRepository == null)
-                    songsRepository = new SongRepository();
+                    songsRepository = new SongRepository(db);
                 return songsRepository;
             }
         }
@@ -42,7 +46,7 @@ namespace DL
             get
             {
                 if (genreRepository == null)
-                    genreRepository = new GenreRepository();
+                    genreRepository = new GenreRepository(db);
                 return genreRepository;
             }
         }
@@ -51,7 +55,7 @@ namespace DL
             get
             {
                 if (playlistRepository == null)
-                    playlistRepository = new PlaylistRepository();
+                    playlistRepository = new PlaylistRepository(db);
                 return playlistRepository;
             }
         }
@@ -60,7 +64,7 @@ namespace DL
             get
             {
                 if (singerRepository == null)
-                    singerRepository = new SingerRepository();
+                    singerRepository = new SingerRepository(db);
                 return singerRepository;
             }
         }
@@ -69,7 +73,7 @@ namespace DL
             get
             {
                 if (userRepository == null)
-                    userRepository = new UserRepository();
+                    userRepository = new UserRepository(db);
                 return userRepository;
             }
         }
@@ -78,7 +82,7 @@ namespace DL
             get
             {
                 if (genreMusicRepository == null)
-                    genreMusicRepository = new Genres_of_MusicRepository();
+                    genreMusicRepository = new Genres_of_MusicRepository(db);
                 return genreMusicRepository;
             }
         }
@@ -87,7 +91,7 @@ namespace DL
             get
             {
                 if (playlist_Of_UserRepository == null)
-                    playlist_Of_UserRepository = new Playlist_of_UserRepository();
+                    playlist_Of_UserRepository = new Playlist_of_UserRepository(db);
                 return playlist_Of_UserRepository;
             }
         }

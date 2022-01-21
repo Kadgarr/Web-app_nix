@@ -13,11 +13,11 @@ namespace BL.Services.Implementations
     public class SongIMP : ISort<SongDTO> , IActionSong
     {
         private readonly IMapper _mapper;
-        UnityOfWork unityOfWork = new UnityOfWork();
-        
+        private UnityOfWork unityOfWork;
 
-        public SongIMP()
+        public SongIMP(ApplicationContext db)
         {
+            unityOfWork = new UnityOfWork(db);
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new AutoMapperProfile());

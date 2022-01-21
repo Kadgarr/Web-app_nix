@@ -10,9 +10,12 @@ namespace DL.Repository
 {
     public class UserRepository : IRepository<User>
     {
-        ApplicationContext db = new ApplicationContext();
+        private ApplicationContext db;
 
-
+        public UserRepository(ApplicationContext db)
+        {
+            this.db = db;
+        }
         public void Add(User item)
         {
             db.Users.Add(item);

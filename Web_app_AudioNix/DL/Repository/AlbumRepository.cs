@@ -10,8 +10,12 @@ namespace DL.Repository
 {
     public class AlbumRepository : IRepository<Album>
     {
-        ApplicationContext db = new ApplicationContext();
+        private ApplicationContext db;
 
+        public AlbumRepository(ApplicationContext db)
+        {
+            this.db = db;
+        }
         public void Add(Album item)
         {
             db.Albums.Add(item);

@@ -10,8 +10,12 @@ namespace DL.Repository
 {
     public class Playlist_of_UserRepository : IRepository<Playlist_of_User>
     {
-        ApplicationContext db = new ApplicationContext();
+        private ApplicationContext db;
 
+        public Playlist_of_UserRepository(ApplicationContext db)
+        {
+            this.db = db;
+        }
 
         public void Add(Playlist_of_User item)
         {

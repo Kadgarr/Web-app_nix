@@ -10,9 +10,12 @@ namespace DL.Repository
 {
     public class GenreRepository : IRepository<Genre>
     {
-        ApplicationContext db = new ApplicationContext();
+        private ApplicationContext db;
 
-
+        public GenreRepository(ApplicationContext db)
+        {
+            this.db = db;
+        }
         public void Add(Genre item)
         {
             db.Genres.Add(item);

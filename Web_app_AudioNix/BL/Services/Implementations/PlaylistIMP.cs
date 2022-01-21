@@ -13,11 +13,11 @@ namespace BL.Services.Implementations
     public class PlaylistIMP : ISort<PlaylistDTO>, IPlaylist 
     {
         private readonly IMapper _mapper;
-        UnityOfWork unityOfWork = new UnityOfWork();
-        
+        private UnityOfWork unityOfWork;
 
-        public PlaylistIMP()
+        public PlaylistIMP(ApplicationContext db)
         {
+            unityOfWork = new UnityOfWork(db);
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new AutoMapperProfile());

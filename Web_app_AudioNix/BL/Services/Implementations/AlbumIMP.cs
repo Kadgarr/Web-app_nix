@@ -13,10 +13,13 @@ namespace BL.Services.Implementations
     public class AlbumIMP:IActionAlbum, ISort<AlbumDTO>
     {
         private readonly IMapper _mapper;
-        UnityOfWork unityOfWork = new UnityOfWork();
 
-        public AlbumIMP()
+        private UnityOfWork unityOfWork;
+        
+        public AlbumIMP(ApplicationContext db)
         {
+            unityOfWork = new UnityOfWork(db);
+
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new AutoMapperProfile());
