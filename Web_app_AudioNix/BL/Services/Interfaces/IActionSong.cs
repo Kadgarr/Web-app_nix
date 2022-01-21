@@ -4,7 +4,7 @@ using System.Text;
 using BL.DtoEntities;
 namespace BL.Services.Interfaces
 {
-    interface ISong
+    interface IActionSong
     {
         
         IEnumerable<SongDTO> SortByDate();

@@ -10,11 +10,15 @@ namespace DL
     {
         ApplicationContext db = new ApplicationContext();
 
-        AlbumRepository albumRepository ;
-        SongsRepository songsRepository ;
-        GenreRepository genreRepository ;
-        Genres_of_MusicRepository genreMusicRepository = new Genres_of_MusicRepository();
+        AlbumRepository albumRepository;
+        GenreRepository genreRepository;
+        SongRepository songsRepository;
+        PlaylistRepository playlistRepository;
+        SingerRepository singerRepository;
+        UserRepository userRepository;
 
+        Genres_of_MusicRepository genreMusicRepository;
+        Playlist_of_UserRepository playlist_Of_UserRepository;
         public AlbumRepository AlbumsRep
         {
             get
@@ -24,13 +28,12 @@ namespace DL
                 return albumRepository;
             }
         }
-
-        public SongsRepository SongsRep
+        public SongRepository SongsRep
         {
             get
             {
                 if (songsRepository == null)
-                    songsRepository = new SongsRepository();
+                    songsRepository = new SongRepository();
                 return songsRepository;
             }
         }
@@ -43,14 +46,49 @@ namespace DL
                 return genreRepository;
             }
         }
-
-        public Genres_of_MusicRepository OrdersRep
+        public PlaylistRepository PlaylistRep
+        {
+            get
+            {
+                if (playlistRepository == null)
+                    playlistRepository = new PlaylistRepository();
+                return playlistRepository;
+            }
+        }
+        public SingerRepository SingerRep
+        {
+            get
+            {
+                if (singerRepository == null)
+                    singerRepository = new SingerRepository();
+                return singerRepository;
+            }
+        }
+        public UserRepository UserRep
+        {
+            get
+            {
+                if (userRepository == null)
+                    userRepository = new UserRepository();
+                return userRepository;
+            }
+        }
+        public Genres_of_MusicRepository Genres_of_MusicRep
         {
             get
             {
                 if (genreMusicRepository == null)
                     genreMusicRepository = new Genres_of_MusicRepository();
                 return genreMusicRepository;
+            }
+        }
+        public Playlist_of_UserRepository Playlist_of_UserRep
+        {
+            get
+            {
+                if (playlist_Of_UserRepository == null)
+                    playlist_Of_UserRepository = new Playlist_of_UserRepository();
+                return playlist_Of_UserRepository;
             }
         }
         public void Save()

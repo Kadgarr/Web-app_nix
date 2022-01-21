@@ -5,10 +5,9 @@ using BL.DtoEntities;
 
 namespace BL.Services.Interfaces
 {
-    interface ISinger
+    interface IActionAlbum
     {
-        IEnumerable<SingerDTO> SearchBySinger(string nameSinger);
-        void ViewSinger(Guid id_singer);
-
+        IEnumerable<SongDTO> LookListSongs(Guid id_album);
+        
     }
 }

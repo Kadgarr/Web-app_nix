@@ -8,20 +8,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DL.Repository
 {
-    public class SongsRepository : IRepository<Song>
+    public class SongRepository : IRepository<Song>
     {
         ApplicationContext db = new ApplicationContext();
 
         public void Add(Song item)
         {
             db.Songs.Add(item);
-            db.SaveChanges();
         }
 
         public void Change(Song item)
         {
             db.Attach(item).State = EntityState.Modified;
-            db.SaveChanges();
         }
 
         public void Delete(Song item)

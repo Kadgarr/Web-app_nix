@@ -16,13 +16,11 @@ namespace DL.Repository
         public void Add(Genre item)
         {
             db.Genres.Add(item);
-            db.SaveChanges();
         }
 
         public void Change(Genre item)
         {
             db.Attach(item).State = EntityState.Modified;
-            db.SaveChanges();
         }
 
         public void Delete(Genre item)

@@ -10,7 +10,7 @@ using DL;
 
 namespace BL.Services.Implementations
 {
-    public class AlbumIMP:IAlbum, ISort<AlbumDTO>
+    public class AlbumIMP:IActionAlbum, ISort<AlbumDTO>
     {
         private readonly IMapper _mapper;
         UnityOfWork unityOfWork = new UnityOfWork();

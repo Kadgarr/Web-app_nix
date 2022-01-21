@@ -1,32 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using DL.IRepository;
+using System.Text;
 using DL.Entities;
+using DL.IRepository;
+using Microsoft.EntityFrameworkCore;
+
 namespace DL.Repository
 {
     public class Genres_of_MusicRepository : IRepository<Genres_of_Music>
     {
         ApplicationContext db = new ApplicationContext();
+
+
         public void Add(Genres_of_Music item)
         {
-            throw new NotImplementedException();
+            db.Genres_of_Music.Add(item);
         }
 
-        public void Change(Genres_of_Music Item)
+
+        public void Change(Genres_of_Music item)
         {
-            throw new NotImplementedException();
+            db.Attach(item).State = EntityState.Modified;
         }
 
         public void Delete(Genres_of_Music item)
         {
-            throw new NotImplementedException();
+            db.Genres_of_Music.Remove(item);
         }
 
         public Genres_of_Music GetItem(Guid item)
         {
-            throw new NotImplementedException();
+            return db.Genres_of_Music.Find(item);
         }
 
         public IEnumerable<Genres_of_Music> GetList()

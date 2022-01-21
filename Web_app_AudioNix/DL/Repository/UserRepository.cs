@@ -8,33 +8,34 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DL.Repository
 {
-    public class AlbumRepository : IRepository<Album>
+    public class UserRepository : IRepository<User>
     {
         ApplicationContext db = new ApplicationContext();
 
-        public void Add(Album item)
+
+        public void Add(User item)
         {
-            db.Albums.Add(item);
+            db.Users.Add(item);
         }
 
-        public void Change(Album item)
+        public void Change(User item)
         {
             db.Attach(item).State = EntityState.Modified;
         }
 
-        public void Delete(Album item)
+        public void Delete(User item)
         {
-            db.Albums.Remove(item);
+            db.Users.Remove(item);
         }
 
-        public Album GetItem(Guid item)
+        public User GetItem(Guid item)
         {
-            return db.Albums.Find(item);
+            return db.Users.Find(item);
         }
 
-        public IEnumerable<Album> GetList()
+        public IEnumerable<User> GetList()
         {
-            return db.Albums.ToList();
+            return db.Users.ToList();
         }
     }
 }
