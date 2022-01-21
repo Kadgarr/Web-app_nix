@@ -31,15 +31,7 @@ namespace BL.Services.Implementations
             return list;
         }
 
-        //public IEnumerable<GenreDTO> SearchByItem(string item)
-        //{
-        //    var list = _mapper.Map<List<GenreDTO>>(genreRepository.GetList());
-
-        //    var genre = list.Find(itm=>itm.Name_of_Genre==item);
-
-        //    var listGenresSongs = _mapper.Map<List<Genres_of_MusicDTO>>(gomrepos.GetList());
-
-        //}
+        
 
         public IEnumerable<GenreDTO> SortByDesc()
         {

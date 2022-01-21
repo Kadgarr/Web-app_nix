@@ -4,13 +4,11 @@ using System.Text;
 using BL.DtoEntities;
 namespace BL.Services.Interfaces
 {
-    interface IUser
+    interface IActionUser
     {
-         void AddSongToPlaylist();
-         void DeleteSongFromPlaylist();
          void Registration();
          bool Auntification(string _login, string _password);
-         void LookProfile(Guid id_User);
+         UserDTO LookProfile(Guid id_User);
         
     }
 }

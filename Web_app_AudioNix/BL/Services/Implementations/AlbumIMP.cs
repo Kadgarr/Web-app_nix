@@ -58,7 +58,7 @@ namespace BL.Services.Implementations
 
             var listsongsalbum = from lst in list
                                  from sngs in songs
-                                 where album.AlbumId == sngs.IdAlbumNavigation.AlbumId
+                                 where sngs.IdAlbumNavigation.AlbumId == album.AlbumId
                                  select sngs;
 
             return listsongsalbum;

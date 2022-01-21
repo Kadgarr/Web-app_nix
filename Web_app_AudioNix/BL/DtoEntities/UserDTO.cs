@@ -20,8 +20,8 @@ namespace BL.DtoEntities
         [Required]
         [StringLength(25, MinimumLength = 6, ErrorMessage = "Введите допустимое количество символов (минимум 6)")]
         public string Password { get; set; }
+        [RegularExpression(@"{0:dd/MM/yyyy}", ErrorMessage = "Введите дату регистрации корректно!")]
+        public DateTime Date_of_registration { get; set; }
 
-        
-       
     }
 }

@@ -7,8 +7,8 @@ namespace BL.Services.Interfaces
 {
     interface IActionSinger
     {
-        IEnumerable<SingerDTO> SearchBySinger(string nameSinger);
-        void ViewSinger(Guid id_singer);
+        IEnumerable<SongDTO> SearchBySinger(string nameSinger);
+        SingerDTO ViewSinger(Guid id_singer);
 
     }
 }

@@ -11,7 +11,7 @@ namespace BL.DtoEntities
         public Guid GenreId { get; set; }
         public Guid SongId { get; set; }
 
-        public SongDTO GenreNavigation { get; set; }
+        public GenreDTO GenreNavigation { get; set; }
         public SongDTO SongNavigation { get; set; }
     }
 }

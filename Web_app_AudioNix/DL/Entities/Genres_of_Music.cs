@@ -11,7 +11,7 @@ namespace DL.Entities
         public Guid GenreId { get; set; }
         public Guid SongId { get; set; }
 
-        public Song GenreNavigation { get; set; }
+        public Genre GenreNavigation { get; set; }
         public Song SongNavigation { get; set; }
     }
 }
