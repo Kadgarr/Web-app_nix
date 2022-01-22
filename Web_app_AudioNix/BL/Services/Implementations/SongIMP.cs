@@ -79,13 +79,21 @@ namespace BL.Services.Implementations
             return sortedlist;
         }
 
-        //public IEnumerable<SongDTO> SortMostPopular() ============ в процессе
-        //{
-        //    var list = _mapper.Map<List<Playlist_of_UserDTO>>(unityOfWork.Playlist_of_UserRep.GetList());
+        public IEnumerable<Playlist_of_UserDTO> SortMostPopular() //============ ВОЗМОЖНО В БУДУЩЕМ НА ПЕРЕДЕЛКУ
+        {
+            var list = _mapper.Map<List<Playlist_of_UserDTO>>(unityOfWork.Playlist_of_UserRep.GetList());
 
-        //    var sorted_list = list.GroupBy(x => x.SongId).Select(d => d.Count());
+            var sorted_list = list.GroupBy(x => x.SongNavigation.SongId).OrderByDescending(x=>x.Count());
 
-        //}
+            var finalList = new List<Playlist_of_UserDTO>();
+            foreach(var t in sorted_list)
+            {
+               
+               finalList.Add(list.FirstOrDefault(x=>x.SongNavigation.SongId==t.Key));
+                
+            }
+            return finalList;
+        }
 
         public SongDTO ViewSong(Guid id_song)
         {

@@ -66,15 +66,32 @@ namespace ConsoleApp2
                 Console.WriteLine(lst.Name_of_Genre+ " "+lst.GenreId);
             }
 
-            var list2 = list.GroupBy(x => x.Name_of_Genre).OrderByDescending(x => x.Count());
+            var list2 = list.GroupBy(x => x.GenreId).OrderByDescending(x => x.Count());
 
-           
-
+        
             foreach (var lst in list2)
             {
                 Console.WriteLine(lst.Key);
+                foreach(var l in lst)
+                {
+                    Console.WriteLine(l.Name_of_Genre+" "+l.GenreId);
+                    list.Add(l);
+                }
             }
-            Console.ReadKey();
+            var finalList = new List<Genre>();
+            foreach (var lst in list2)
+            { 
+                
+                    finalList.Add(list.FirstOrDefault(x=>x.GenreId==lst.Key));
+                   
+                
+            }
+                Console.WriteLine("finallist-"+finalList.Count);
+            foreach (var lst in finalList)
+            {
+                Console.WriteLine(lst.Name_of_Genre+" "+lst.GenreId) ;
+            }
+                Console.ReadKey();
         }
         public static void WriteFile()
         {

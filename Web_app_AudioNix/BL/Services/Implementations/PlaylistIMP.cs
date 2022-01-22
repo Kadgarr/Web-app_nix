@@ -26,7 +26,6 @@ namespace BL.Services.Implementations
         }
 
         
-
         public IEnumerable<PlaylistDTO> GetAll()
         {
             var list = _mapper.Map<List<PlaylistDTO>>(unityOfWork.PlaylistRep.GetList());
