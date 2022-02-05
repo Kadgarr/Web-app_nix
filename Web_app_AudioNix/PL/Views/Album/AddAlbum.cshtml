@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouMusLib</title>
+
+</head>
+    <body>
+        <h3>Форма добавления альбома</h3>
+
+        <p>Для добавления альбома заполните следующие поля:</p>
+
+        <form method="post">
+
+            <div>
+                <label for="Name_of_album">Название альбома</label><br />
+                <input type="text" name="Name_of_album" /><br />
+            </div>
+
+            <div>
+                <label for="Picture">Выберите изображение:</label><br />
+                <input type="file" name="Picture" /><br>
+            </div>
+
+            <div>
+                <label for="Description"> Выберите дату релиза</label><br />
+                <textarea type="text" name="Date_of_release"></textarea><br />
+            </div>
+
+            <div>
+                <label> Выберите исполнителя </label><br />
+                <select name="SingerId">
+                    <option>исполнитель1</option>
+                    <option>исполнитель2</option>
+                </select>
+            </div>
+
+            <div>
+                <submit value="Добавить" />
+            </div>
+        </form>
+    </body>
+</html>

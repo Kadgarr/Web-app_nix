@@ -1,0 +1,27 @@
+﻿@model DL.Entities.Genre
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouMusLib</title>
+
+</head>
+    <body>
+        <h3>Редактирование имени жанра</h3>
+
+        <p>Для редактирования жанра заполните следующие поля:</p>
+
+        <form method="post">
+
+            <div>
+                <label asp-for="Name_of_Genre">Измените название жанра:</label><br />
+                <input type="text" asp-for="Name_of_Genre" /><br />
+            </div>
+
+            <div>
+                <submit value="Внести изменения" />
+            </div>
+        </form>
+    </body>
+</html>

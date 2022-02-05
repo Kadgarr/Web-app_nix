@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 
 namespace DL.Entities
 {
@@ -17,6 +18,8 @@ namespace DL.Entities
        [Required]
        [RegularExpression(@"{0:dd/MM/yyyy}", ErrorMessage = "Введите дату релиза корректно!")]
        public DateTime Date_of_release { get; set; }
+       public Image Picture { get; set; }
+
        public Singer SingerNavigation { get; set; }
     }
 }

@@ -1,0 +1,39 @@
+﻿@model DL.Entities.User
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouMusLib</title>
+
+</head>
+    <body>
+        <h3>Редактирование профиля</h3>
+
+        <p>Для редактирования профиля работайте со следующими поля:</p>
+
+        <form method="post">
+
+            <div>
+                <label asp-for="Email">Изменить Email</label><br />
+                <input type="text" asp-for="Email" /><br />
+            </div>
+
+            <div>
+                <label asp-for="Picture">  Измените изображение:</label><br />
+                <input type="file" asp-for="Picture" /><br>
+            </div>
+
+            <div>
+                <label asp-for="Password"> Изменить пароль</label><br />
+                <textarea type="text" asp-for="Password"></textarea><br />
+            </div>
+
+          
+
+            <div>
+                <submit value="Внести изменения" />
+            </div>
+        </form>
+    </body>
+</html>

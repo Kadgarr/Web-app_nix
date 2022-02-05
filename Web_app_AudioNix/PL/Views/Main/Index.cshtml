@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - YouMusLib</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <a href="">YouMusLib</a>
+        <nav>
+            <form>
+                <input type="text" name="Search" placeholder="Поиск" />
+                <submit>Найти</submit>
+            </form>
+            <ul>
+                <li>
+                    <a asp-area="" asp-controller="" asp-action="">Популярные</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="" asp-action="">Новые</a>
+                </li>
+                <li>
+                    <div>
+                        <a asp-area="" asp-controller="" asp-action="">Список песен</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a href="~/Song/AddSong">Добавить песню</a>
+                        }
+                    </div>
+                    
+                </li>
+                <li>
+                    <div>
+                        <a asp-area="" asp-controller="" asp-action="">Жанры</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a href="~/Genre/AddGenre">Добавить жанр</a>
+                        }
+                    </div>
+
+                </li>
+                <li>
+                    <div>
+                        <a asp-area="" asp-controller="" asp-action="">Исполнители</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a href="~/Singer/AddSinger"> Добавить исполнителя</a>
+                        }
+                    </div>
+
+                </li>
+                <li>
+                    <div>
+                        <a asp-area="" asp-controller="" asp-action="">Альбомы</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a href="~/Album/AddAlbum">Добавить альбом</a>
+                        }
+                    </div>
+
+                </li>
+                <li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="~/User/ViewUserProfile">Профиль</a>
+                    }
+                    else
+                    {
+                        <a href="~/User/Login">Вход </a>
+                    }
+                </li>
+                <li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a href="~/User/Registration">Регистрация</a>
+                    }
+                    
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <aside>
+        Свежие
+    </aside>
+
+    <foooter>
+        <div>
+             Контактные данные
+        </div>
+    </foooter>
+</body>
+</html>

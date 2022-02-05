@@ -79,18 +79,33 @@ namespace BL.Services.Implementations
             return sortedlist;
         }
 
+        //public IEnumerable<SongDTO> SortMostPopular() //============ ВОЗМОЖНО В БУДУЩЕМ НА ПЕРЕДЕЛКУ
+        //{
+        //    var list = _mapper.Map<List<Playlist_of_UserDTO>>(unityOfWork.Playlist_of_UserRep.GetList());
+        //    var listSong = _mapper.Map<List<SongDTO>>(unityOfWork.Playlist_of_UserRep.GetList());
+
+        //    var sorted_list = list.GroupBy(x => x.SongNavigation.SongId).OrderByDescending(x=>x.Count());
+
+        //    var finalList = new List<SongDTO>();
+        //    foreach(var t in sorted_list)
+        //    {
+
+        //       finalList.Add(listSong.FirstOrDefault(x=>x.SongId==t.Key));
+        //    }
+        //    return finalList;
+        //}
+
         public IEnumerable<Playlist_of_UserDTO> SortMostPopular() //============ ВОЗМОЖНО В БУДУЩЕМ НА ПЕРЕДЕЛКУ
         {
             var list = _mapper.Map<List<Playlist_of_UserDTO>>(unityOfWork.Playlist_of_UserRep.GetList());
 
-            var sorted_list = list.GroupBy(x => x.SongNavigation.SongId).OrderByDescending(x=>x.Count());
+            var sorted_list = list.GroupBy(x => x.SongNavigation.SongId).OrderByDescending(x => x.Count());
 
             var finalList = new List<Playlist_of_UserDTO>();
-            foreach(var t in sorted_list)
+            foreach (var t in sorted_list)
             {
-               
-               finalList.Add(list.FirstOrDefault(x=>x.SongNavigation.SongId==t.Key));
-                
+
+                finalList.Add(list.FirstOrDefault(x => x.SongNavigation.SongId == t.Key));
             }
             return finalList;
         }
