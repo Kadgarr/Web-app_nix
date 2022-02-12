@@ -6,6 +6,7 @@ using AutoMapper;
 using BL.Mapping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,6 +41,7 @@ namespace PL
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //если проект в разработке
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -63,6 +65,20 @@ namespace PL
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+            //string z = "";
+            //app.Use(async (context, next) =>
+            //{
+            //    z = "str";
+            //    await next.Invoke();
+            //});
+
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync(z);
+            //});
+
         }
     }
 }

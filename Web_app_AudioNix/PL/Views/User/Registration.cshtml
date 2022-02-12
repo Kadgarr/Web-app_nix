@@ -6,41 +6,74 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YouMusLib</title>
+    <style>
+        .btn-primary {
+            background-color: black;
+            color: #FFA500;
+            border-width: medium;
+            border-color: #FFA500;
+        }
 
+            .btn-primary:hover,
+            .btn-primary:focus,
+            .btn-primary:visited {
+                background-color: #D2691E;
+                border-width: medium;
+                border-color: black;
+                color: black;
+            }
+    </style>
 </head>
 <body>
     <h3>Регистрация пользователя</h3>
 
     <p>Для добавления песни заполните следующие поля:</p>
 
-    <form method="post">
+    <form method="post" class="was-validated">
 
-        <div>
-            <label>Введите логин</label><br />
-            <input type="text" />
+        <div class="mb-3">
+            <label for="fieldLogin" class="form-label">Введите логин</label><br />
+            <input class="form-control is-invalid" type="text" id="fieldLogin" placeholder="Введите логин!" required />
+            <div class="invalid-feedback">
+                Поле "Логин" обязательно для ввода.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="fieldEmail" class="form-label">Введите email</label><br />
+            <input class="form-control is-invalid" id="fieldEmail" placeholder="email@example.com" type="email" required />
+            <div class="invalid-feedback">
+                Поле "Email" обязательно для ввода.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="fieldPassword" class="form-label"> Введите пароль</label><br />
+            <input class="form-control is-invalid" id="fieldPassword" placeholder="Password" type="password" required />
+            <div class="invalid-feedback">
+                Поле "Password" обязательно для ввода.
+            </div>
+        </div>
+
+
+        @*!!!!!!!!!!!В ДАЛЬНЕЙШЕМ ВАЛИДАЦИЯ ЧЕРЕЗ МОДЕЛЬ (asp-validation-for="") ДЛЯ СРАВНЕНИЯ ПАРОЛЕЙ!!!!!!!!!!!*@
+
+
+        <div class="mb-3">
+            <label for="fieldPassword" class="form-label"> Подтвердите пароль</label><br />
+            <input class="form-control is-invalid" id="fieldPassword" placeholder="Password" type="password" required />
+            <div class="invalid-feedback">
+                Поле "Password" обязательно для ввода.
+            </div>
+        </div>
+        <div class="mb-3">
+            @*<label for="Picture">Выберите изображение:</label><br />*@
+            <input class="form-control" aria-label="file example" type="file" name="Picture" required /><br>
+            <div class="invalid-feedback">
+                Выберете изображение для вашей аватарки.
+            </div>
         </div>
         <div>
-            <label>Введите email</label><br />
-            <input type="email" />
-        </div>
-
-        <div>
-            <label> Введите пароль</label><br />
-            <input type="password" />
-
-        </div>
-
-        <div>
-            <label>Подтвердите пароль</label><br />
-            <input type="password" />
-
-        </div>
-        <div>
-            <label for="Picture">Выберите изображение:</label><br />
-            <input type="file" name="Picture" /><br>
-        </div>
-        <div>
-            <submit value="Регистрация" />
+            <button class="btn btn-primary" @*style="background-color:black"*@ type="submit">Зарегистрироваться</button>
         </div>
     </form>
 </body>
