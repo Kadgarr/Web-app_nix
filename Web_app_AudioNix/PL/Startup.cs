@@ -14,6 +14,24 @@ using Microsoft.Extensions.Hosting;
 
 namespace PL
 {
+    public interface IMessageSender
+    {
+        string Send();
+    }
+    public class EmailMessageSender : IMessageSender
+    {
+        public string Send()
+        {
+            return "Send 1";
+        }
+    }
+    public class SmsMessageSender : IMessageSender
+    {
+        public string Send()
+        {
+            return "Send by 2";
+        }
+    }
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -34,12 +52,12 @@ namespace PL
 
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
-
+            services.AddTransient<IMessageSender, EmailMessageSender>();
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMessageSender messageSender)
         {
             //если проект в разработке
             if (env.IsDevelopment())
@@ -67,17 +85,10 @@ namespace PL
             });
 
 
-            //string z = "";
-            //app.Use(async (context, next) =>
-            //{
-            //    z = "str";
-            //    await next.Invoke();
-            //});
-
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync(z);
-            //});
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync(messageSender.Send());
+            });
 
         }
     }
