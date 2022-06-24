@@ -21,12 +21,15 @@ namespace DL.Entities
         [Required]
         [Range(10,600,ErrorMessage ="Вы вышли за пределы диапазона значений длительности от 10 до 600 секунд!")]
         public int Duration { get; set; }
-        public Image Picture { get; set; }
+        public string Picture { get; set; }
+        public Guid? IdSinger { get; set; }
+    
+        public Guid? IdAldum { get; set; }
 
         public Singer IdSingerNavigation { get; set; }
         public Album IdAlbumNavigation { get; set; }
 
-        public List<Genres_of_Music> Genres_music { get; set; }
+        public virtual List<Genres_of_Music> Genres_music { get; set; }
 
     }
 }

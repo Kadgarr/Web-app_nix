@@ -8,8 +8,10 @@ namespace DL.Entities
 {
     public class Genres_of_Music
     {
-        public Guid GenreId { get; set; }
-        public Guid SongId { get; set; }
+
+        public Guid Id { get; set; }
+        public Guid? GenreId { get; set; }
+        public Guid? SongId { get; set; }
 
         public Genre GenreNavigation { get; set; }
         public Song SongNavigation { get; set; }

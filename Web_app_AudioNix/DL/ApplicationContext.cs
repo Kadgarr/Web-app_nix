@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Text;
 using DL.Entities;
 
 namespace DL
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationContext : IdentityDbContext
     {
-        public ApplicationContext(DbContextOptions options)
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
            : base(options)
         {
             //Database.EnsureDeleted();
@@ -28,9 +29,16 @@ namespace DL
             Database.EnsureCreated();
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(@"Server=(localdb)\\mssqllocaldb;Database=WebAppNix_DB;Trusted_Connection=True;");
+        //}
+
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=WebAppNix_DB;Trusted_Connection=True;");
+            base.OnModelCreating(builder);
+            builder.Entity<Playlist_of_User>().HasNoKey();
         }
+
     }
 }

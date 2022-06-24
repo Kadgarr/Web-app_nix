@@ -1,26 +1,41 @@
-﻿@model List<GenreView>
+﻿@model IEnumerable<PL.Models.GenreView>
+
 @{
-    ViewData["Title"] = "GamesShop";
+    ViewData["Title"] = "Список жанров";
 }
 
-<h3>Список жанров</h3>
+<h1>lstgnr</h1>
 
-
-<div class="card">
-    @foreach (var genre in Model)
-    {
-        <div class="card-header">
-            <a  asp-controller="Genre" asp-route-id="@genre.GenreId"> @genre.Name_of_Genre</a>
-        </div>
-        <div class="card-body">
-
-                <a class="btn btn-link" asp-controller="Genre" asp-action="EditGenre" asp-route="@genre">Редактировать</a>
-
-                <form method="post">
-                    <button class="btn btn-danger" type="submit" asp-action="GenreList" asp-controller="Genre" asp-route="@genre">Удалить</button>
-                </form>
-
-            
-        </div>
-    }
-</div>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GenreId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name_of_Genre)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GenreId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name_of_Genre)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

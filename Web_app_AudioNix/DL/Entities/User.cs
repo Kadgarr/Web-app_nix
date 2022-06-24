@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
+using Microsoft.AspNetCore.Identity;
 
 namespace DL.Entities
 {
-    public class User
+    public class User:IdentityUser<Guid>
     {
         [Required(ErrorMessage = "Укажите id",AllowEmptyStrings =false)]
         public Guid UserId { get; set; }
@@ -17,7 +18,7 @@ namespace DL.Entities
         public string Email { get; set; }
         [Required(ErrorMessage = "Вы вышли за пределы допустимого кол-ва значений")]
         [StringLength(40, MinimumLength = 3)]
-        public Image Picture { get; set; }
+        public string Picture { get; set; }
 
         public string Login { get; set; }
         [Required]
