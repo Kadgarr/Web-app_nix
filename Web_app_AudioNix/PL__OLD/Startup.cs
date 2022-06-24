@@ -14,28 +14,21 @@ using Microsoft.Extensions.Hosting;
 
 namespace PL
 {
-    public interface IMessageSender
+    public class Task
     {
-        string Send();
-    }
-    public class EmailMessageSender : IMessageSender
-    {
-        public string Send()
-        {
-            return "Send 1";
-        }
-    }
-    public class SmsMessageSender : IMessageSender
-    {
-        public string Send()
-        {
-            return "Send by 2";
-        }
+        public string Topic { get; set; }
+        public string Purpose { get; set; }
+        public int Hours { get; set; }
     }
     public class Startup
     {
+        public IConfiguration AppConfiguration { get; set; }
         public Startup(IConfiguration configuration)
         {
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("task.json").AddJsonFile("task2.json");
+            AppConfiguration = builder.Build();
+
             Configuration = configuration;
         }
 
@@ -49,15 +42,16 @@ namespace PL
             {
                 mc.AddProfile(new AutoMapperProfile());
             });
+            
 
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
-            services.AddTransient<IMessageSender, EmailMessageSender>();
+         
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMessageSender messageSender)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             //если проект в разработке
             if (env.IsDevelopment())
@@ -85,9 +79,12 @@ namespace PL
             });
 
 
+            var task = new Task();
+            AppConfiguration.Bind(task);
+
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync(messageSender.Send());
+                await context.Response.WriteAsync($"Topic: {task.Topic}; Purpose: {task.Purpose}; Hours:{task.Hours}");
             });
 
         }

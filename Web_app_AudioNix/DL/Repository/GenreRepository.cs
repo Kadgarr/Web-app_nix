@@ -11,7 +11,6 @@ namespace DL.Repository
     public class GenreRepository : IRepository<Genre>
     {
         private ApplicationContext db;
-
         public GenreRepository(ApplicationContext db)
         {
             this.db = db;
@@ -19,16 +18,19 @@ namespace DL.Repository
         public void Add(Genre item)
         {
             db.Genres.Add(item);
+            db.SaveChanges();
         }
 
         public void Change(Genre item)
         {
             db.Attach(item).State = EntityState.Modified;
+            db.SaveChanges();
         }
 
         public void Delete(Genre item)
         {
             db.Genres.Remove(item);
+            db.SaveChanges();
         }
 
         public Genre GetItem(Guid item)

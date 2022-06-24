@@ -8,7 +8,7 @@ namespace DL
 {
     public class ApplicationContext : DbContext
     {
-        public ApplicationContext(DbContextOptions<ApplicationContext> options)
+        public ApplicationContext(DbContextOptions options)
            : base(options)
         {
             //Database.EnsureDeleted();

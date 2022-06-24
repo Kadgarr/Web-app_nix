@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> YouMusLib</title>
+</head>
+<body>
+    <div>
+        <h4>Название плейлиста</h4>
+    </div>
+
+
+    <div>
+        Песни плейлиста
+        @if (User.IsInRole("Admin"))
+        {
+            <button>Редактировать</button>
+        }
+        <ul>
+            <li>
+                <iframe src="">Песня</iframe>
+                <button>Delete</button>
+            </li>
+            <li>
+                <iframe src="">Песня</iframe>
+                <button>Delete</button>
+            </li>
+            <li>...</li>
+        </ul>
+    </div>
+</body>
+</html>
+
+
+
+

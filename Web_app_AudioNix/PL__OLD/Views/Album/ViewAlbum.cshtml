@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> YouMusLib</title>
+</head>
+<body>
+    <div>
+        <h4>Название Альбома</h4>
+    </div>
+
+    <div> <img src="" /></div>
+
+    <div>Дата выхода</div>
+
+    <div>Испольнитель</div>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <button>Редактировать</button>
+    }
+
+    <div>
+        Песни альбома
+        <ul>
+            <li>
+                <iframe src="">Песня</iframe>
+            </li>
+            <li>
+                <iframe src="">Песня</iframe>
+            </li>
+            <li>...</li>
+        </ul>
+    </div>
+</body>
+</html>
+
+
+

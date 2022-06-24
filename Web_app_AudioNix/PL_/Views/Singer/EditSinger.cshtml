@@ -1,0 +1,38 @@
+﻿@model PL.Models.SingerView
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouMusLib</title>
+
+</head>
+    <body>
+        <h3>Форма редактирования исполнителя</h3>
+
+        <p>Для редактирования исполнителя измените на выбор следующие поля:</p>
+
+        <form method="post">
+
+            <div>
+                <label asp-for="Name_of_singer">Название исполнителя (имя)</label><br />
+                <input type="text" asp-for="Name_of_singer" /><br />
+            </div>
+
+            <div>
+                <label asp-for="Image">  Выберите изображение:</label><br />
+                <input type="file" name="Image" /><br>
+            </div>
+
+            <div>
+                <label asp-for="Description"> Описание исполнителя: </label><br />
+                <textarea type="text" asp-for="Description"></textarea><br />
+            </div>
+
+=
+            <div>
+                <submit value="Внести изменения" />
+            </div>
+        </form>
+    </body>
+</html>

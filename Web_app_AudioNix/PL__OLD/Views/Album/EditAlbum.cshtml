@@ -1,0 +1,45 @@
+﻿@model DL.Entities.Album
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouMusLib</title>
+
+</head>
+    <body>
+        <h3>Форма редактирования альбома</h3>
+
+        <p>Для редактирования альбома заполните следующие поля:</p>
+
+        <form method="post">
+
+            <div>
+                <label asp-for="Name_of_album">Измените название альбома</label><br />
+                <input type="text" asp-for="Name_of_album" /><br />
+            </div>
+
+            <div>
+                <label asp-for="Picture">Изображение:</label><br />
+                <input type="file" asp-for="Picture" /><br>
+            </div>
+
+            <div>
+                <label asp-for="Date_of_release"> Выберите дату релиза</label><br />
+                <textarea type="text" asp-for="Date_of_release"></textarea><br />
+            </div>
+
+            <div>
+                <label> Выберите исполнителя </label><br />
+                <select name="SingerId">
+                    <option>исполнитель1</option>
+                    <option>исполнитель2</option>
+                </select>
+            </div>
+
+            <div>
+                <submit value="Внести изменения" />
+            </div>
+        </form>
+    </body>
+</html>

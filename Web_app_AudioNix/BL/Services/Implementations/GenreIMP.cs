@@ -6,6 +6,7 @@ using BL.DtoEntities;
 using AutoMapper;
 using System.Linq;
 using BL.Mapping;
+using DL.Entities;
 using DL;
 
 namespace BL.Services.Implementations
@@ -13,6 +14,7 @@ namespace BL.Services.Implementations
     public class GenreIMP : ISort<GenreDTO> 
     {
         private readonly IMapper _mapper;
+        private readonly IMapper _mapper_bl_dl;
         private UnityOfWork unityOfWork;
 
         public GenreIMP(ApplicationContext db)
@@ -22,7 +24,12 @@ namespace BL.Services.Implementations
             {
                 mc.AddProfile(new AutoMapperProfile());
             });
-            _mapper= mappingConfig.CreateMapper();
+            _mapper = mappingConfig.CreateMapper();
+            var mappingConfig2 = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AutoMapperProfile());
+            });
+            _mapper_bl_dl = mappingConfig2.CreateMapper();
         }
         public IEnumerable<GenreDTO> GetAll()
         {
@@ -31,7 +38,6 @@ namespace BL.Services.Implementations
             return list;
         }
 
-        
 
         public IEnumerable<GenreDTO> SortByDesc()
         {
@@ -50,5 +56,26 @@ namespace BL.Services.Implementations
 
             return sortedlist;
         }
+
+
+        public void AddGenre(string Name_of_genre)
+        {
+            var genreDTO = new GenreDTO { GenreId = new Guid(), Name_of_Genre = Name_of_genre };
+            var genre = _mapper_bl_dl.Map<Genre>(genreDTO);
+            unityOfWork.GenresRep.Add(genre);
+        }
+
+        public void EditGenre(GenreDTO genreDTO)
+        {
+            var genre = _mapper_bl_dl.Map<Genre>(genreDTO);
+            unityOfWork.GenresRep.Change(genre);
+        }
+
+        public void RemoveGenre(GenreDTO genreDTO)
+        {
+            var genre = _mapper_bl_dl.Map<Genre>(genreDTO);
+            unityOfWork.GenresRep.Delete(genre);
+        }
+
     }
 }
