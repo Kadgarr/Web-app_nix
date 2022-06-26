@@ -13,14 +13,17 @@
         <p>Для редактирования жанра заполните следующие поля:</p>
 
         <form method="post">
-
+            <div>
+           
+                 <input type="text" asp-for="GenreId" class="form-control"/><br />
+            </div>
             <div>
                 <label asp-for="Name_of_Genre">Измените название жанра:</label><br />
-                <input type="text" asp-for="Name_of_Genre" /><br />
+                <input type="text" asp-for="Name_of_Genre" class="form-control"/><br />
             </div>
 
             <div>
-                <submit value="Внести изменения" />
+                <button type="submit" >Внести изменения</button> 
             </div>
         </form>
     </body>

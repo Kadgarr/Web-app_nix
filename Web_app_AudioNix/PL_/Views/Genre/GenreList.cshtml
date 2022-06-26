@@ -4,19 +4,15 @@
     ViewData["Title"] = "Список жанров";
 }
 
-<h1>lstgnr</h1>
+<h1>Жанры</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
+          
             <th>
-                @Html.DisplayNameFor(model => model.GenreId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name_of_Genre)
+                Название жанра
             </th>
             <th></th>
         </tr>
@@ -24,16 +20,16 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GenreId)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Name_of_Genre)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+               <a class="btn btn-info"asp-action="EditGenre" asp-controller="Genre" asp-route-id="@item.GenreId">Редактировать</a>
+                <form method="post">
+                    <button class="btn " type="submit" asp-action="GenreList" asp-controller="Genre" asp-route-id="@item.GenreId" >Удалить</button>
+                </form>
+                
             </td>
         </tr>
 }

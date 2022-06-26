@@ -1,5 +1,7 @@
+using BL.Mapping;
 using DL;
 using Microsoft.EntityFrameworkCore;
+using PL.Mapping;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +12,9 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Web_app_AudioNix"), b =>
                     b.MigrationsAssembly("DL")));
-
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<ApplicationContext>();
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile), typeof(AutoMapperProfilePL_BL));
 
 var app = builder.Build();
 

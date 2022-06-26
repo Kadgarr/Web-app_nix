@@ -37,13 +37,13 @@ namespace PL.Controllers
 
             genreIMP = new GenreIMP(db);
 
-            genreViews = _mapper.Map<List<GenreView>>(genreIMP.GetAll());
+            
         }
 
         [HttpGet]
-        public IActionResult GenreList()
+        public async Task<IActionResult> GenreList()
         {
-            return View(genreViews);
+            return View(genreViews = _mapper.Map<List<GenreView>>(await genreIMP.GetAll()));
         }
 
         [HttpGet]
@@ -53,9 +53,10 @@ namespace PL.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditGenre()
+        public async Task<IActionResult> EditGenre(Guid id)
         {
-            return View();
+            var genre = _mapper.Map<GenreView>(await genreIMP.GetItemAsync(id));
+            return View(genre);
         }
 
         [HttpPost]
@@ -68,23 +69,32 @@ namespace PL.Controllers
 
 
         [HttpPost]
-        public IActionResult EditGenre(GenreView item)
+        public async Task<ActionResult> EditGenre(Guid GenreId, string Name_of_Genre)
         {
+            var item = _mapper.Map<GenreView>(await genreIMP.GetItemAsync(GenreId));
+
             var genre = _mapper.Map<GenreDTO>(item);
 
-            genreIMP.EditGenre(genre);
+            genre.Name_of_Genre = Name_of_Genre;
+
+            await genreIMP.EditGenre(genre);
 
             return View();
         }
 
         [HttpPost]
-        public IActionResult DeleteGenre(GenreView item)
+        [ActionName("GenreList")]
+        public async Task<IActionResult> DeleteGenre(Guid id)
         {
+            var list = _mapper.Map<List<GenreView>>(await genreIMP.GetAll());
+
+            var item = list.FirstOrDefault(x=>x.GenreId==id);
+
             var genre = _mapper.Map<GenreDTO>(item);
 
-            genreIMP.RemoveGenre(genre);
+            await genreIMP.RemoveGenre(genre);
 
-            return View();
+            return View("GenreList", genreViews =  _mapper.Map<List<GenreView>>(await genreIMP.GetAll()));
         }
     }
 }

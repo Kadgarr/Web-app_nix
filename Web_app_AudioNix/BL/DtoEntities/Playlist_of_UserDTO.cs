@@ -9,9 +9,9 @@ namespace BL.DtoEntities
 {
     public class Playlist_of_UserDTO
     {
-        public Guid UserId { get; set; }
-        public Guid SongId { get; set; }
-        public Guid PlaylistId { get; set; }
+        public Guid? UserId { get; set; }
+        public Guid? SongId { get; set; }
+        public Guid? PlaylistId { get; set; }
 
         public UserDTO UserNavigation { get; set; }
         public SongDTO SongNavigation { get; set; }

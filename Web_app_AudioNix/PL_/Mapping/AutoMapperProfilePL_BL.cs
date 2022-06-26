@@ -11,14 +11,14 @@ namespace PL.Mapping
     {
         public AutoMapperProfilePL_BL()
         {
-            CreateMap<UserView, UserDTO>();
-            CreateMap<AlbumView, AlbumDTO>(); 
-            CreateMap<GenreView, GenreDTO>();
-            CreateMap<SingerView, SingerDTO>();
-            CreateMap<SongView, SongDTO>();
-            CreateMap<PlaylistView, PlaylistDTO>();
-            CreateMap<Genres_of_MusicView, Genres_of_MusicDTO>();
-            CreateMap<Playlist_of_UserView, Playlist_of_UserDTO>();
+            CreateMap<UserView, UserDTO>().ReverseMap();
+            CreateMap<AlbumView, AlbumDTO>().ReverseMap(); 
+            CreateMap<GenreView, GenreDTO>().ReverseMap();
+            CreateMap<SingerView, SingerDTO>().ReverseMap();
+            CreateMap<SongView, SongDTO>().ReverseMap();
+            CreateMap<PlaylistView, PlaylistDTO>().ReverseMap();
+            CreateMap<Genres_of_MusicView, Genres_of_MusicDTO>().ReverseMap();
+            CreateMap<Playlist_of_UserView, Playlist_of_UserDTO>().ReverseMap();
         }
     }
 }

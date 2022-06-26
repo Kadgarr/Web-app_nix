@@ -8,8 +8,9 @@ namespace BL.DtoEntities
 {
     public class Genres_of_MusicDTO
     {
-        public Guid GenreId { get; set; }
-        public Guid SongId { get; set; }
+        public Guid Id { get; set; }
+        public Guid? GenreId { get; set; }
+        public Guid? SongId { get; set; }
 
         public GenreDTO GenreNavigation { get; set; }
         public SongDTO SongNavigation { get; set; }

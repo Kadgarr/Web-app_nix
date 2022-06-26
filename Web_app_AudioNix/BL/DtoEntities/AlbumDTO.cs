@@ -18,7 +18,7 @@ namespace BL.DtoEntities
        [Required]
        [RegularExpression(@"{0:dd/MM/yyyy}", ErrorMessage = "Введите дату релиза корректно!")]
        public DateTime Date_of_release { get; set; }
-       public Image Picture { get; set; }
+       public string Picture { get; set; }
        public SingerDTO SingerNavigation { get; set; }
     }
 }

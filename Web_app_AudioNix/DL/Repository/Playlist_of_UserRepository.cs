@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using DL.Entities;
 using DL.IRepository;
 using Microsoft.EntityFrameworkCore;
@@ -20,26 +21,33 @@ namespace DL.Repository
         public void Add(Playlist_of_User item)
         {
             db.Playlist_of_User.Add(item);
+            db.SaveChanges();
         }
 
-        public void Change(Playlist_of_User item)
+        public async Task ChangeAsync(Guid id)
         {
+            var item = await db.Genres.FindAsync(id);
             db.Attach(item).State = EntityState.Modified;
+            db.SaveChanges();
         }
 
-        public void Delete(Playlist_of_User item)
+        public async Task DeleteAsync(Guid id)
         {
+            var item = await db.Playlist_of_User.FindAsync(id);
             db.Playlist_of_User.Remove(item);
+
+            await db.SaveChangesAsync();
         }
 
-        public Playlist_of_User GetItem(Guid item)
+
+        public async Task<Playlist_of_User> GetItemAsync(Guid id)
         {
-            return db.Playlist_of_User.Find(item);
+            return await db.Playlist_of_User.FindAsync(id);
         }
 
-        public IEnumerable<Playlist_of_User> GetList()
+        public async Task<IEnumerable<Playlist_of_User>> GetListAsync()
         {
-            return db.Playlist_of_User.ToList();
+            return await db.Playlist_of_User.ToListAsync();
         }
     }
 }

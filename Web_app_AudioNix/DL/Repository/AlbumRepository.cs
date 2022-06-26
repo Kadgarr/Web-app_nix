@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using DL.Entities;
 using DL.IRepository;
 using Microsoft.EntityFrameworkCore;
@@ -16,29 +17,37 @@ namespace DL.Repository
         {
             this.db = db;
         }
+
         public void Add(Album item)
         {
             db.Albums.Add(item);
+            db.SaveChanges();
         }
 
-        public void Change(Album item)
+        public async Task ChangeAsync(Guid id)
         {
+            var item = await db.Albums.FindAsync(id);
             db.Attach(item).State = EntityState.Modified;
+            db.SaveChanges();
         }
 
-        public void Delete(Album item)
+        public async Task DeleteAsync(Guid id)
         {
+            var item = await db.Albums.FindAsync(id);
             db.Albums.Remove(item);
+
+            await db.SaveChangesAsync();
         }
 
-        public Album GetItem(Guid item)
+
+        public async Task<Album> GetItemAsync(Guid id)
         {
-            return db.Albums.Find(item);
+            return await db.Albums.FindAsync(id);
         }
 
-        public IEnumerable<Album> GetList()
+        public async Task<IEnumerable<Album>> GetListAsync()
         {
-            return db.Albums.ToList();
+            return await db.Albums.ToListAsync();
         }
     }
 }

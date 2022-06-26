@@ -7,6 +7,7 @@ using AutoMapper;
 using System.Linq;
 using BL.Mapping;
 using DL;
+using System.Threading.Tasks;
 
 namespace BL.Services.Implementations
 {
@@ -30,16 +31,16 @@ namespace BL.Services.Implementations
             throw new NotImplementedException();
         }
 
-        public IEnumerable<UserDTO> GetAll()
+        public async Task<IEnumerable<UserDTO>> GetAll()
         {
-            var list = _mapper.Map<List<UserDTO>>(unityOfWork.UserRep.GetList());
+            var list = _mapper.Map<List<UserDTO>>(await unityOfWork.UserRep.GetListAsync());
 
             return list;
         }
 
         public UserDTO LookProfile(Guid id_User)
         {
-            var list = _mapper.Map<List<UserDTO>>(unityOfWork.UserRep.GetList());
+            var list = _mapper.Map<List<UserDTO>>(unityOfWork.UserRep.GetListAsync());
 
             var profile = list.Find(l => l.UserId == id_User);
 
@@ -51,18 +52,18 @@ namespace BL.Services.Implementations
             throw new NotImplementedException();
         }
 
-        public IEnumerable<UserDTO> SortByDesc()
+        public async Task<IEnumerable<UserDTO>> SortByDesc()
         {
-            var list = _mapper.Map<List<UserDTO>>(unityOfWork.UserRep.GetList());
+            var list = _mapper.Map<List<UserDTO>>(await unityOfWork.UserRep.GetListAsync());
 
             var sortedlist = list.OrderByDescending(l => l.Login);
 
             return sortedlist;
         }
 
-        public IEnumerable<UserDTO> SortByInc()
+        public async Task<IEnumerable<UserDTO>> SortByInc()
         {
-            var list = _mapper.Map<List<UserDTO>>(unityOfWork.UserRep.GetList());
+            var list = _mapper.Map<List<UserDTO>>(await unityOfWork.UserRep.GetListAsync());
 
             var sortedlist = list.OrderBy(l => l.Login);
 

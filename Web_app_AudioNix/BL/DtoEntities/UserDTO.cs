@@ -17,7 +17,7 @@ namespace BL.DtoEntities
         public string Email { get; set; }
         [Required(ErrorMessage = "Вы вышли за пределы допустимого кол-ва значений")]
         [StringLength(40, MinimumLength = 3)]
-        public Image Picture { get; set; }
+        public string Picture { get; set; }
         public string Login { get; set; }
         [Required]
         [StringLength(25, MinimumLength = 6, ErrorMessage = "Введите допустимое количество символов (минимум 6)")]

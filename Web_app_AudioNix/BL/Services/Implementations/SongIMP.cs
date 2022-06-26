@@ -7,6 +7,7 @@ using AutoMapper;
 using System.Linq;
 using BL.Mapping;
 using DL;
+using System.Threading.Tasks;
 
 namespace BL.Services.Implementations
 {
@@ -24,26 +25,26 @@ namespace BL.Services.Implementations
             });
             _mapper= mappingConfig.CreateMapper();
         }
-        public IEnumerable<SongDTO> GetAll()
+        public async Task<IEnumerable<SongDTO>> GetAll()
         {
-            var list = _mapper.Map<List<SongDTO>>(unityOfWork.SongsRep.GetList());
+            var list = _mapper.Map<List<SongDTO>>(await unityOfWork.SongsRep.GetListAsync());
 
             return list;
         }
 
-     
-        public IEnumerable<SongDTO> SortByDesc()
+
+        public async Task<IEnumerable<SongDTO>> SortByDesc()
         {
-            var list = _mapper.Map<List<SongDTO>>(unityOfWork.SongsRep.GetList());
+            var list = _mapper.Map<List<SongDTO>>(await unityOfWork.SongsRep.GetListAsync());
 
             var sortedlist = list.OrderByDescending(l => l.Name_of_song);
 
             return sortedlist;
         }
 
-        public IEnumerable<SongDTO> SortByInc()
+        public async Task<IEnumerable<SongDTO>> SortByInc()
         {
-            var list = _mapper.Map<List<SongDTO>>(unityOfWork.GenresRep.GetList());
+            var list = _mapper.Map<List<SongDTO>>(await unityOfWork.GenresRep.GetListAsync());
 
             var sortedlist = list.OrderBy(l => l.Name_of_song);
 
@@ -51,7 +52,7 @@ namespace BL.Services.Implementations
         }
         public IEnumerable<Genres_of_MusicDTO> SearchByGenre(Guid id_genre)
         {
-            var listGenresSongs = _mapper.Map<List<Genres_of_MusicDTO>>(unityOfWork.Genres_of_MusicRep.GetList());
+            var listGenresSongs = _mapper.Map<List<Genres_of_MusicDTO>>(unityOfWork.Genres_of_MusicRep.GetListAsync());
 
             var listsongs = from lstGenre in listGenresSongs
                             where lstGenre.GenreNavigation.GenreId == id_genre
@@ -62,7 +63,7 @@ namespace BL.Services.Implementations
 
         public IEnumerable<SongDTO> SearchSong(string nameSong)
         {
-            var list = _mapper.Map<List<SongDTO>>(unityOfWork.SongsRep.GetList());
+            var list = _mapper.Map<List<SongDTO>>(unityOfWork.SongsRep.GetListAsync());
 
             var searchlist = from lst in list
                              where lst.Name_of_song.StartsWith(nameSong) //еще возможно Contains 
@@ -72,7 +73,7 @@ namespace BL.Services.Implementations
 
         public IEnumerable<SongDTO> SortByDate()
         {
-            var list = _mapper.Map<List<SongDTO>>(unityOfWork.GenresRep.GetList());
+            var list = _mapper.Map<List<SongDTO>>(unityOfWork.GenresRep.GetListAsync());
 
             var sortedlist = list.OrderBy(l => l.Date_of_release);
 
@@ -97,7 +98,7 @@ namespace BL.Services.Implementations
 
         public IEnumerable<Playlist_of_UserDTO> SortMostPopular() //============ ВОЗМОЖНО В БУДУЩЕМ НА ПЕРЕДЕЛКУ
         {
-            var list = _mapper.Map<List<Playlist_of_UserDTO>>(unityOfWork.Playlist_of_UserRep.GetList());
+            var list = _mapper.Map<List<Playlist_of_UserDTO>>(unityOfWork.Playlist_of_UserRep.GetListAsync());
 
             var sorted_list = list.GroupBy(x => x.SongNavigation.SongId).OrderByDescending(x => x.Count());
 
@@ -112,7 +113,7 @@ namespace BL.Services.Implementations
 
         public SongDTO ViewSong(Guid id_song)
         {
-            var list = _mapper.Map<List<SongDTO>>(unityOfWork.SongsRep.GetList());
+            var list = _mapper.Map<List<SongDTO>>(unityOfWork.SongsRep.GetListAsync());
 
             var profile = list.Find(l => l.SongId == id_song);
 

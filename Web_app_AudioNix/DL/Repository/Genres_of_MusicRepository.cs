@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using DL.Entities;
 using DL.IRepository;
 using Microsoft.EntityFrameworkCore;
@@ -21,27 +22,33 @@ namespace DL.Repository
         public void Add(Genres_of_Music item)
         {
             db.Genres_of_Music.Add(item);
+            db.SaveChanges();
         }
 
-
-        public void Change(Genres_of_Music item)
+        public async Task ChangeAsync(Guid id)
         {
+            var item = await db.Genres_of_Music.FindAsync(id);
             db.Attach(item).State = EntityState.Modified;
+            db.SaveChanges();
         }
 
-        public void Delete(Genres_of_Music item)
+        public async Task DeleteAsync(Guid id)
         {
+            var item = await db.Genres_of_Music.FindAsync(id);
             db.Genres_of_Music.Remove(item);
+
+            await db.SaveChangesAsync();
         }
 
-        public Genres_of_Music GetItem(Guid item)
+
+        public async Task<Genres_of_Music> GetItemAsync(Guid id)
         {
-            return db.Genres_of_Music.Find(item);
+            return await db.Genres_of_Music.FindAsync(id);
         }
 
-        public IEnumerable<Genres_of_Music> GetList()
+        public async Task<IEnumerable<Genres_of_Music>> GetListAsync()
         {
-            return db.Genres_of_Music.ToList();
+            return await db.Genres_of_Music.ToListAsync();
         }
     }
 }

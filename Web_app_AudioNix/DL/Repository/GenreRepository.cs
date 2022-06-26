@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using DL.Entities;
 using DL.IRepository;
 using Microsoft.EntityFrameworkCore;
@@ -21,26 +22,30 @@ namespace DL.Repository
             db.SaveChanges();
         }
 
-        public void Change(Genre item)
+        public async Task ChangeAsync(Guid id)
         {
+            var item = await db.Genres.FindAsync(id);
             db.Attach(item).State = EntityState.Modified;
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
 
-        public void Delete(Genre item)
+        public async Task DeleteAsync(Guid id)
         {
+            var item  = await db.Genres.FindAsync(id);
             db.Genres.Remove(item);
-            db.SaveChanges();
+           
+            await db.SaveChangesAsync();
         }
 
-        public Genre GetItem(Guid item)
+  
+        public async Task<Genre> GetItemAsync(Guid id)
         {
-            return db.Genres.Find(item);
+            return await db.Genres.FindAsync(id);
         }
 
-        public IEnumerable<Genre> GetList()
+        public async Task<IEnumerable<Genre>> GetListAsync()
         {
-            return db.Genres.ToList();
+            return await db.Genres.ToListAsync();
         }
     }
 }

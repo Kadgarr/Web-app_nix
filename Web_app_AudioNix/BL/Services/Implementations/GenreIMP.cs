@@ -8,6 +8,7 @@ using System.Linq;
 using BL.Mapping;
 using DL.Entities;
 using DL;
+using System.Threading.Tasks;
 
 namespace BL.Services.Implementations
 {
@@ -25,32 +26,29 @@ namespace BL.Services.Implementations
                 mc.AddProfile(new AutoMapperProfile());
             });
             _mapper = mappingConfig.CreateMapper();
-            var mappingConfig2 = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new AutoMapperProfile());
-            });
-            _mapper_bl_dl = mappingConfig2.CreateMapper();
+          
         }
-        public IEnumerable<GenreDTO> GetAll()
+
+        public async Task<IEnumerable<GenreDTO>> GetAll()
         {
-            var list = _mapper.Map<List<GenreDTO>>(unityOfWork.GenresRep.GetList());
+            var list = _mapper.Map<List<GenreDTO>>(await unityOfWork.GenresRep.GetListAsync());
 
             return list;
         }
 
 
-        public IEnumerable<GenreDTO> SortByDesc()
+        public async Task<IEnumerable<GenreDTO>> SortByDesc()
         {
-            var list = _mapper.Map<List<GenreDTO>>(unityOfWork.GenresRep.GetList());
+            var list = _mapper.Map<List<GenreDTO>>(await unityOfWork.GenresRep.GetListAsync());
 
             var sortedlist = list.OrderByDescending(l => l.Name_of_Genre);
 
             return sortedlist;
         }
 
-        public IEnumerable<GenreDTO> SortByInc()
+        public async Task<IEnumerable<GenreDTO>> SortByInc()
         {
-            var list = _mapper.Map<List<GenreDTO>>(unityOfWork.GenresRep.GetList());
+            var list = _mapper.Map<List<GenreDTO>>(await unityOfWork.GenresRep.GetListAsync());
 
             var sortedlist = list.OrderBy(l => l.Name_of_Genre);
 
@@ -61,21 +59,26 @@ namespace BL.Services.Implementations
         public void AddGenre(string Name_of_genre)
         {
             var genreDTO = new GenreDTO { GenreId = new Guid(), Name_of_Genre = Name_of_genre };
-            var genre = _mapper_bl_dl.Map<Genre>(genreDTO);
+            var genre = _mapper.Map<Genre>(genreDTO);
             unityOfWork.GenresRep.Add(genre);
         }
 
-        public void EditGenre(GenreDTO genreDTO)
+        public async Task EditGenre(GenreDTO genreDTO)
         {
-            var genre = _mapper_bl_dl.Map<Genre>(genreDTO);
-            unityOfWork.GenresRep.Change(genre);
+            var genre = _mapper.Map<Genre>(genreDTO);
+           await unityOfWork.GenresRep.ChangeAsync(genre.GenreId);
         }
 
-        public void RemoveGenre(GenreDTO genreDTO)
+        public async Task RemoveGenre(GenreDTO genreDTO)
         {
-            var genre = _mapper_bl_dl.Map<Genre>(genreDTO);
-            unityOfWork.GenresRep.Delete(genre);
+            var genre = _mapper.Map<Genre>(genreDTO);
+
+            await unityOfWork.GenresRep.DeleteAsync(genre.GenreId);
         }
 
+        public async Task<GenreDTO> GetItemAsync(Guid id)
+        {
+            return _mapper.Map<GenreDTO>(await unityOfWork.GenresRep.GetItemAsync(id));
+        }
     }
 }

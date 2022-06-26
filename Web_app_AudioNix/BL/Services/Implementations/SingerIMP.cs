@@ -7,6 +7,7 @@ using AutoMapper;
 using System.Linq;
 using BL.Mapping;
 using DL;
+using System.Threading.Tasks;
 
 namespace BL.Services.Implementations
 {
@@ -24,25 +25,25 @@ namespace BL.Services.Implementations
             });
             _mapper= mappingConfig.CreateMapper();
         }
-        public IEnumerable<SingerDTO> GetAll()
+        public async Task<IEnumerable<SingerDTO>> GetAll()
         {
-            var list = _mapper.Map<List<SingerDTO>>(unityOfWork.SingerRep.GetList());
+            var list = _mapper.Map<List<SingerDTO>>(await unityOfWork.SingerRep.GetListAsync());
 
             return list;
         }
 
-        public IEnumerable<SingerDTO> SortByDesc()
+        public async Task<IEnumerable<SingerDTO>> SortByDesc()
         {
-            var list = _mapper.Map<List<SingerDTO>>(unityOfWork.SingerRep.GetList());
+            var list = _mapper.Map<List<SingerDTO>>( await unityOfWork.SingerRep.GetListAsync());
 
             var sortedlist = list.OrderByDescending(l => l.Name_of_singer);
 
             return sortedlist;
         }
 
-        public IEnumerable<SingerDTO> SortByInc()
+        public async Task<IEnumerable<SingerDTO>> SortByInc()
         {
-            var list = _mapper.Map<List<SingerDTO>>(unityOfWork.SingerRep.GetList());
+            var list = _mapper.Map<List<SingerDTO>>(await unityOfWork.SingerRep.GetListAsync());
 
             var sortedlist = list.OrderBy(l => l.Name_of_singer);
 
@@ -51,7 +52,7 @@ namespace BL.Services.Implementations
 
         public SingerDTO ViewSinger(Guid id_singer)
         {
-            var list = _mapper.Map<List<SingerDTO>>(unityOfWork.SingerRep.GetList());
+            var list = _mapper.Map<List<SingerDTO>>(unityOfWork.SingerRep.GetListAsync());
 
             var singer = list.Find(l => l.SingerId == id_singer);
 
@@ -60,9 +61,9 @@ namespace BL.Services.Implementations
 
         public IEnumerable<SongDTO> SearchBySinger(string nameSinger)
         {
-            var list = _mapper.Map<List<SingerDTO>>(unityOfWork.SingerRep.GetList());
+            var list = _mapper.Map<List<SingerDTO>>(unityOfWork.SingerRep.GetListAsync());
 
-            var songs = _mapper.Map<List<SongDTO>>(unityOfWork.SongsRep.GetList());
+            var songs = _mapper.Map<List<SongDTO>>(unityOfWork.SongsRep.GetListAsync());
 
             var name = list.Find(itm => itm.Name_of_singer == nameSinger);
 

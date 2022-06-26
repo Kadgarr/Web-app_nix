@@ -21,7 +21,7 @@ namespace BL.DtoEntities
         [Required]
         [Range(10,600,ErrorMessage ="Вы вышли за пределы диапазона значений длительности от 10 до 600 секунд!")]
         public int Duration { get; set; }
-        public Image Picture { get; set; }
+        public string Picture { get; set; }
       
 
         public SingerDTO IdSingerNavigation { get; set; }
