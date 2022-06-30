@@ -65,8 +65,9 @@ namespace BL.Services.Implementations
 
         public async Task EditGenre(GenreDTO genreDTO)
         {
-            var genre = _mapper.Map<Genre>(genreDTO);
-           await unityOfWork.GenresRep.ChangeAsync(genre.GenreId);
+           var genre = _mapper.Map<Genre>(genreDTO);
+          
+           await unityOfWork.GenresRep.ChangeAsync(genre);
         }
 
         public async Task RemoveGenre(GenreDTO genreDTO)

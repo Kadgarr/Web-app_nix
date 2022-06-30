@@ -69,13 +69,13 @@ namespace PL.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> EditGenre(Guid GenreId, string Name_of_Genre)
+        public async Task<ActionResult> EditGenre(GenreView item)
         {
-            var item = _mapper.Map<GenreView>(await genreIMP.GetItemAsync(GenreId));
+            //var item = _mapper.Map<GenreView>(await genreIMP.GetItemAsync(GenreId));
 
-            var genre = _mapper.Map<GenreDTO>(item);
+            var genre = await genreIMP.GetItemAsync(item.GenreId);
 
-            genre.Name_of_Genre = Name_of_Genre;
+            genre.Name_of_Genre = item.Name_of_Genre;
 
             await genreIMP.EditGenre(genre);
 

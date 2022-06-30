@@ -21,5 +21,6 @@ namespace PL.Models
        public Image Picture { get; set; }
 
        public SingerView SingerNavigation { get; set; }
+       public List<SongView> Songs { get; set; }
     }
 }

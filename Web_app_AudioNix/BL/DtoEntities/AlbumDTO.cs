@@ -20,5 +20,7 @@ namespace BL.DtoEntities
        public DateTime Date_of_release { get; set; }
        public string Picture { get; set; }
        public SingerDTO SingerNavigation { get; set; }
+
+        public List<SongDTO> Songs { get; set; }
     }
 }

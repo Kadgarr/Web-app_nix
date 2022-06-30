@@ -1,5 +1,6 @@
 using BL.Mapping;
 using DL;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PL.Mapping;
 
@@ -13,6 +14,8 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Web_app_AudioNix"), b =>
                     b.MigrationsAssembly("DL")));
 builder.Services.AddScoped<ApplicationContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationContext>();
 //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile), typeof(AutoMapperProfilePL_BL));
 

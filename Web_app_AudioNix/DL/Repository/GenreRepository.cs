@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DL.Repository
 {
-    public class GenreRepository : IRepository<Genre>
+    public class GenreRepository /*: IRepository<Genre>*/
     {
         private ApplicationContext db;
         public GenreRepository(ApplicationContext db)
@@ -22,10 +22,10 @@ namespace DL.Repository
             db.SaveChanges();
         }
 
-        public async Task ChangeAsync(Guid id)
+        public async Task ChangeAsync(Genre item)
         {
-            var item = await db.Genres.FindAsync(id);
             db.Attach(item).State = EntityState.Modified;
+            
             await db.SaveChangesAsync();
         }
 
@@ -40,7 +40,7 @@ namespace DL.Repository
   
         public async Task<Genre> GetItemAsync(Guid id)
         {
-            return await db.Genres.FindAsync(id);
+            return await db.Genres.AsNoTracking().FirstOrDefaultAsync(a=>a.GenreId==id);
         }
 
         public async Task<IEnumerable<Genre>> GetListAsync()

@@ -22,7 +22,7 @@ namespace DL
         public DbSet<Playlist_of_User> Playlist_of_User { get; set; }
         public DbSet<Singer> Singers { get; set; }
         public DbSet<Song> Songs { get; set; }
-        public DbSet<User> Users { get; set; }
+      //  public DbSet<User> Users { get; set; }
 
         public ApplicationContext()
         {
