@@ -8,6 +8,7 @@ using System.Linq;
 using BL.Mapping;
 using DL;
 using System.Threading.Tasks;
+using DL.Entities;
 
 namespace BL.Services.Implementations
 {
@@ -23,9 +24,10 @@ namespace BL.Services.Implementations
             {
                 mc.AddProfile(new AutoMapperProfile());
             });
-            _mapper= mappingConfig.CreateMapper();
+            _mapper = mappingConfig.CreateMapper();
         }
 
+       
         public bool Auntification(string _login, string _password)
         {
             throw new NotImplementedException();
@@ -69,5 +71,33 @@ namespace BL.Services.Implementations
 
             return sortedlist;
         }
+
+
+
+        public async Task AddUser(string login, string password, string email, string picture)
+        {
+            var userDTO = new UserDTO { UserId = new Guid(), Login = login, Date_of_registration= new DateTime().Date, Email=email, Password=password, Picture=picture   };
+            var user = _mapper.Map<User>(userDTO);
+            unityOfWork.UserRep.Add(user);
+        }
+
+        //public async Task EditUser(UserDTO genreDTO)
+        //{
+        //    var genre = _mapper.Map<User>(genreDTO);
+
+        //    await unityOfWork.UserRep.ChangeAsync(genre);
+        //}
+
+        //public async Task RemoveUser(UserDTO genreDTO)
+        //{
+        //    var genre = _mapper.Map<User>(genreDTO);
+
+        //    await unityOfWork.UserRep.DeleteAsync(genre.GenreId);
+        //}
+
+        //public async Task<UserDTO> GetItemAsync(Guid id)
+        //{
+        //    return _mapper.Map<UserDTO>(await unityOfWork.UserRep.GetItemAsync(id));
+        //}
     }
 }

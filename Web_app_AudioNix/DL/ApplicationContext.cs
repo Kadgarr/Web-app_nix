@@ -7,7 +7,7 @@ using DL.Entities;
 
 namespace DL
 {
-    public class ApplicationContext : IdentityDbContext
+    public class ApplicationContext : IdentityDbContext<User>
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
            : base(options)

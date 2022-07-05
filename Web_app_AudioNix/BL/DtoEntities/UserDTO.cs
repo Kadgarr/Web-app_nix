@@ -27,5 +27,6 @@ namespace BL.DtoEntities
         [RegularExpression(@"{0:dd/MM/yyyy}", ErrorMessage = "Введите дату регистрации корректно!")]
         public DateTime Date_of_registration { get; set; }
 
+
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DL.Entities
 {
-    public class User:IdentityUser<Guid>
+    public class User:IdentityUser
     {
         [Required(ErrorMessage = "Укажите id",AllowEmptyStrings =false)]
         public Guid UserId { get; set; }
@@ -28,7 +28,6 @@ namespace DL.Entities
         public string PasswordConfirm { get; set; }
         [RegularExpression(@"{0:dd/MM/yyyy}", ErrorMessage = "Введите дату регистрации корректно!")]
         public DateTime Date_of_registration{ get; set; }
-
 
 
     }

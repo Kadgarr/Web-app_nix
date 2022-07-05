@@ -93,17 +93,18 @@
                     <li class="nav-item">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <a href="~/User/ViewUserProfile">Профиль</a>
+                            <a class="nav-link active" href="~/User/ViewUserProfile">Профиль</a>
+                            <a class="nav-link active" href="~/User/ViewUserProfile">Профиль</a>
                         }
                         else
                         {
-                            <a class="nav-link active" href="~/User/Login">Вход </a>
+                            <a class="nav-link active" href="~/Account/Login">Вход </a>
                         }
                     </li>
                     <li class="nav-item">
                         @if (!User.Identity.IsAuthenticated)
                         {
-                            <a class="nav-link active" href="~/User/Registration">Регистрация</a>
+                            <a class="nav-link active" href="~/Account/Registration">Регистрация</a>
                         }
 
                     </li>

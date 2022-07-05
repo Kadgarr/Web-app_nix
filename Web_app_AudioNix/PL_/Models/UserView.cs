@@ -29,6 +29,5 @@ namespace PL.Models
         public DateTime Date_of_registration{ get; set; }
 
 
-
     }
 }

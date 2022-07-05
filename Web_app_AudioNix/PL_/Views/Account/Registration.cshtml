@@ -1,0 +1,77 @@
+﻿@model PL.Models.AccountViewModels.RegisterViewModel
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouMusLib</title>
+    <style>
+        .btn-primary {
+            background-color: black;
+            color: #FFA500;
+            border-width: medium;
+            border-color: #FFA500;
+        }
+
+            .btn-primary:hover,
+            .btn-primary:focus,
+            .btn-primary:visited {
+                background-color: #D2691E;
+                border-width: medium;
+                border-color: black;
+                color: black;
+            }
+
+        .spanValid{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <h3>Регистрация пользователя</h3>
+
+    <p>Для добавления песни заполните следующие поля:</p>
+
+    <form method="post"  asp-controller="Account" asp-action="Registration">
+       @* is-invalid*@
+        <div style="color:red" asp-validation-summary="ModelOnly"></div>
+        <div class="mb-3">
+            <label asp-for="Login" class="form-label">Введите логин</label><br />
+            <input class="form-control" type="text" id="fieldLogin" asp-for="Login" placeholder="Введите логин!"  />
+            <span class="spanValid" asp-validation-for="Login"></span>
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Введите email</label><br />
+            <input class="form-control" id="fieldEmail" asp-for="Email" placeholder="email@example.com" type="email"  />
+            <span class="spanValid" asp-validation-for="Email"></span>
+        
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label"> Введите пароль</label><br />
+            <input class="form-control" id="fieldPassword" placeholder="Password" asp-for="Password"  />
+            <span class="spanValid" asp-validation-for="Password"></span>
+       
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PasswordConfirm"class="form-label"> Подтвердите пароль</label><br />
+            <input class="form-control" id="fieldPassword" placeholder="Password"  asp-for="PasswordConfirm"  />
+            <span class="spanValid" asp-validation-for="PasswordConfirm"></span>
+          
+        </div>
+        <div class="mb-3">
+            <label for="Picture">Выберите изображение:</label><br />
+            <input class="form-control" aria-label="file example" type="file"asp-for="Picture" name="Picture"  /><br>
+            <span class="spanValid" asp-validation-for="Picture"></span>
+        
+        </div>
+     
+          <div>
+            <button class="btn btn-primary" @*style="background-color:black"*@ type="submit">Зарегистрироваться</button>
+        </div>
+    </form>
+</body>
+</html>

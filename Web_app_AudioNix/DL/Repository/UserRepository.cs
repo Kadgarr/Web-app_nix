@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using DL.Entities;
 using DL.IRepository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace DL.Repository
 {
-    public class UserRepository : IRepository<User>
+    public class UserRepository //: IRepository<User>
     {
         private ApplicationContext db;
 
@@ -17,6 +18,7 @@ namespace DL.Repository
         {
             this.db = db;
         }
+
         public void Add(User item)
         {
             db.Users.Add(item);
@@ -38,10 +40,9 @@ namespace DL.Repository
             await db.SaveChangesAsync();
         }
 
-
-        public async Task<User> GetItemAsync(Guid id)
+        public Task<User> GetItemAsync(Guid id)
         {
-            return await db.Users.FindAsync(id);
+            throw new NotImplementedException();
         }
 
         public async Task<IEnumerable<User>> GetListAsync()
