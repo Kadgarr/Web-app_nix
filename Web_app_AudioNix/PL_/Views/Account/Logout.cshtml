@@ -1,0 +1,18 @@
+﻿@model PL.Models.AccountViewModels.LoginViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+    <h2>Выход из личного кабинета</h2>
+
+    <form method="post" asp-controller="Account" asp-action="Logout">
+        Вы действительно хотите выйти?
+        <div>
+            <input type="submit" value="Выйти" class="btn btn-danger" />
+        </div>
+    </form>
+</body>
+</html>

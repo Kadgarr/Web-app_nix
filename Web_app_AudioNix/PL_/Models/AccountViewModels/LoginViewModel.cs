@@ -4,10 +4,10 @@ namespace PL.Models.AccountViewModels
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "Укажите электронный адресс")]
-        [EmailAddress]
-        public string Email { get; set; }
-
+        //[Required(ErrorMessage = "Укажите электронный адресс")]
+        //[EmailAddress]
+        //public string Email { get; set; }
+        public string Login { get; set; }
 
         [Required]
         [StringLength(25, MinimumLength = 6, ErrorMessage = "Введите допустимое количество символов (минимум 6)")]
@@ -17,7 +17,6 @@ namespace PL.Models.AccountViewModels
 
         [Display(Name = "Запомнить?")]
         public bool RememberMe { get; set; }
-
-        public string ReturnUrl { get; set; }
+        public string? ReturnUrl { get; set; }
     }
 }
