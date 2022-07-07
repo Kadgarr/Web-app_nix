@@ -11,7 +11,7 @@ namespace BL.DtoEntities
     public class UserDTO
     {
         [Required(ErrorMessage = "Укажите id",AllowEmptyStrings =false)]
-        public Guid UserId { get; set; }
+        public string Id { get; set; }
         [Required(ErrorMessage = "Укажите электронный адресс")]
         [EmailAddress]
         public string Email { get; set; }
@@ -26,6 +26,8 @@ namespace BL.DtoEntities
         public string PasswordConfirm { get; set; }
         [RegularExpression(@"{0:dd/MM/yyyy}", ErrorMessage = "Введите дату регистрации корректно!")]
         public DateTime Date_of_registration { get; set; }
+
+        public virtual List<Playlist_of_UserDTO> Playlists_Of_User { get; set; }
 
 
     }

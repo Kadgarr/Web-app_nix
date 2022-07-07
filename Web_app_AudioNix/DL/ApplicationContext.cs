@@ -12,7 +12,7 @@ namespace DL
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
            : base(options)
         {
-            //Database.EnsureDeleted();
+          //  Database.EnsureDeleted();
             Database.EnsureCreated();
         }
         public DbSet<Album> Albums { get; set; }
@@ -22,11 +22,11 @@ namespace DL
         public DbSet<Playlist_of_User> Playlist_of_User { get; set; }
         public DbSet<Singer> Singers { get; set; }
         public DbSet<Song> Songs { get; set; }
-      //  public DbSet<User> Users { get; set; }
+        //  public DbSet<User> Users { get; set; }
 
         public ApplicationContext()
         {
-            Database.EnsureCreated();
+
         }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -36,8 +36,20 @@ namespace DL
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
+            //builder.Entity<Playlist_of_User>().HasNoKey();
+
+            builder.Entity<Playlist_of_User>(entity =>
+            {
+                entity.HasKey(e => e.id_record);
+
+                entity.HasOne(k => k.UserNavigation).WithMany(k => k.Playlists_Of_User)
+
+                 ;
+            });
+            
+           
             base.OnModelCreating(builder);
-            builder.Entity<Playlist_of_User>().HasNoKey();
         }
 
     }

@@ -94,7 +94,8 @@
                     <li class="nav-item">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <a class="nav-link active" href="~/User/ViewUserProfile">Профиль</a>
+                            <a  class="nav-link active" asp-controller="Account" asp-action="Profile" asp-route-name="@User.Identity.Name" >Профиль</a>
+                        
                         }
                         else
                         {

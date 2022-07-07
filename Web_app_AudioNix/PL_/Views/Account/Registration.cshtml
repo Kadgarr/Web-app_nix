@@ -11,6 +11,7 @@
             background-color: black;
             color: #FFA500;
             border-width: medium;
+            border-radius: 12px;
             border-color: #FFA500;
         }
 
@@ -46,7 +47,6 @@
             <label asp-for="Email" class="form-label">Введите email</label><br />
             <input class="form-control" id="fieldEmail" asp-for="Email" placeholder="email@example.com" type="email"  />
             <span class="spanValid" asp-validation-for="Email"></span>
-        
         </div>
 
         <div class="mb-3">

@@ -12,7 +12,8 @@ namespace DL.Entities
     public class User:IdentityUser
     {
         [Required(ErrorMessage = "Укажите id",AllowEmptyStrings =false)]
-        public Guid UserId { get; set; }
+        public override string Id { get; set; }
+
         [Required(ErrorMessage = "Укажите электронный адресс")]
         [EmailAddress]
         public string Email { get; set; }
@@ -28,6 +29,8 @@ namespace DL.Entities
         public string PasswordConfirm { get; set; }
         [RegularExpression(@"{0:dd/MM/yyyy}", ErrorMessage = "Введите дату регистрации корректно!")]
         public DateTime Date_of_registration{ get; set; }
+
+        public virtual List<Playlist_of_User> Playlists_Of_User { get; set; }
 
 
     }

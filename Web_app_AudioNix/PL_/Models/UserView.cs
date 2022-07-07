@@ -11,13 +11,13 @@ namespace PL.Models
     public class UserView
     {
         [Required(ErrorMessage = "Укажите id",AllowEmptyStrings =false)]
-        public Guid UserId { get; set; }
+        public string Id { get; set; }
         [Required(ErrorMessage = "Укажите электронный адресс")]
         [EmailAddress]
         public string Email { get; set; }
         [Required(ErrorMessage = "Вы вышли за пределы допустимого кол-ва значений")]
         [StringLength(40, MinimumLength = 3)]
-        public Image Picture { get; set; }
+        public string Picture { get; set; }
 
         public string Login { get; set; }
         [Required]
@@ -27,7 +27,7 @@ namespace PL.Models
         public string PasswordConfirm { get; set; }
         [RegularExpression(@"{0:dd/MM/yyyy}", ErrorMessage = "Введите дату регистрации корректно!")]
         public DateTime Date_of_registration{ get; set; }
-
+        public virtual List<Playlist_of_UserView> Playlists_Of_User { get; set; }
 
     }
 }

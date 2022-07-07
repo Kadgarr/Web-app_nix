@@ -12,7 +12,7 @@ using DL.Entities;
 
 namespace BL.Services.Implementations
 {
-    public class UserIMP : ISort<UserDTO>, IActionUser
+    public class UserIMP //: ISort<UserDTO>, IActionUser
     {
         private readonly IMapper _mapper;
         private UnityOfWork unityOfWork;
@@ -40,14 +40,14 @@ namespace BL.Services.Implementations
             return list;
         }
 
-        public UserDTO LookProfile(Guid id_User)
-        {
-            var list = _mapper.Map<List<UserDTO>>(unityOfWork.UserRep.GetListAsync());
+        //public UserDTO LookProfile(Guid id_User)
+        //{
+        //    var list = _mapper.Map<List<UserDTO>>(unityOfWork.UserRep.GetListAsync());
 
-            var profile = list.Find(l => l.UserId == id_User);
+        //    var profile = list.Find(l => l.UserId == id_User);
 
-            return profile;
-        }
+        //    return profile;
+        //}
 
         public void Registration()
         {
@@ -74,19 +74,19 @@ namespace BL.Services.Implementations
 
 
 
-        public async Task AddUser(string login, string password, string email, string picture)
-        {
-            var userDTO = new UserDTO { UserId = new Guid(), Login = login, Date_of_registration= new DateTime().Date, Email=email, Password=password, Picture=picture   };
-            var user = _mapper.Map<User>(userDTO);
-            unityOfWork.UserRep.Add(user);
-        }
-
-        //public async Task EditUser(UserDTO genreDTO)
+        //public async Task AddUser(string login, string password, string email, string picture)
         //{
-        //    var genre = _mapper.Map<User>(genreDTO);
-
-        //    await unityOfWork.UserRep.ChangeAsync(genre);
+        //    var userDTO = new UserDTO { UserId = new Guid(), Login = login, Date_of_registration= new DateTime().Date, Email=email, Password=password, Picture=picture   };
+        //    var user = _mapper.Map<User>(userDTO);
+        //    unityOfWork.UserRep.Add(user);
         //}
+
+        public async Task EditUser(UserDTO genreDTO)
+        {
+            var genre = _mapper.Map<User>(genreDTO);
+
+            await unityOfWork.UserRep.ChangeAsync(genre);
+        }
 
         //public async Task RemoveUser(UserDTO genreDTO)
         //{
@@ -95,9 +95,9 @@ namespace BL.Services.Implementations
         //    await unityOfWork.UserRep.DeleteAsync(genre.GenreId);
         //}
 
-        //public async Task<UserDTO> GetItemAsync(Guid id)
-        //{
-        //    return _mapper.Map<UserDTO>(await unityOfWork.UserRep.GetItemAsync(id));
-        //}
+        public async Task<UserDTO> GetItemAsync(string name)
+        {
+            return _mapper.Map<UserDTO>(await unityOfWork.UserRep.GetItemAsync(name));
+        }
     }
 }

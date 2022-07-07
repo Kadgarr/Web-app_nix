@@ -25,14 +25,13 @@ namespace DL.Repository
             db.SaveChanges();
         }
 
-        public async Task ChangeAsync(Guid id)
+        public async Task ChangeAsync(User user)
         {
-            var item = await db.Users.FindAsync(id);
-            db.Attach(item).State = EntityState.Modified;
-            db.SaveChanges();
+            db.Users.Update(user);
+            await db.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(string id)
         {
             var item = await db.Users.FindAsync(id);
             db.Users.Remove(item);
@@ -40,9 +39,9 @@ namespace DL.Repository
             await db.SaveChangesAsync();
         }
 
-        public Task<User> GetItemAsync(Guid id)
+        public async Task<User> GetItemAsync(string name)
         {
-            throw new NotImplementedException();
+            return await db.Users.AsNoTracking().FirstOrDefaultAsync(a => a.Login == name);
         }
 
         public async Task<IEnumerable<User>> GetListAsync()

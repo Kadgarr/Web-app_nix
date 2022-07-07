@@ -108,7 +108,7 @@ namespace PL.Controllers
             if (ModelState.IsValid)
             {
 
-                User user = new User { UserName = model.Login, Email = model.Email, Password = model.Password, Picture = model.Picture };
+                User user = new User {Id= Guid.NewGuid().ToString(), UserName = model.Login, Email = model.Email, Password = model.Password, Picture = model.Picture, Date_of_registration=DateTime.Today };
           
             
                 var result = await _userManager.CreateAsync(user, model.Password);
@@ -126,10 +126,73 @@ namespace PL.Controllers
                     }
                 }
             }
-         
-
 
             return View(model);
         }
+        [HttpGet]
+        public async Task<IActionResult> Profile(string name)
+        { 
+            //var user = _mapper.Map<UserView>(await _userManager.FindByNameAsync(name));
+            var user = await _userManager.FindByNameAsync(name);
+
+            var userDTO = _mapper.Map<UserDTO>(await userIMP.GetItemAsync(user.Login));
+
+            var userView = _mapper.Map<UserView>(userDTO);
+
+            if (userView == null)
+            {
+                return NotFound();
+            }
+
+            return View(userView);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> EditProfile(string name)
+        {
+            var user = await _userManager.FindByIdAsync(name);
+
+            var userDTO = _mapper.Map<UserDTO>(await userIMP.GetItemAsync(user.Login));
+
+            var userView = _mapper.Map<UserView>(userDTO);
+
+            if (userView == null)
+            {
+                return NotFound();
+            }
+
+            return View(userView);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> EditProfile(UserView getuser)
+        {
+            Console.WriteLine("======ID ПОЛЬЗОВАТЕЛЯ======= :" + getuser.Email);
+            User user = await _userManager.FindByIdAsync(getuser.Id);
+            if (ModelState.IsValid)
+            {
+           
+                if (user != null)
+                {
+                    //var userDTO = await userIMP.GetItemAsync(getuser.Login);
+                    user.Email = getuser.Email;
+                    //user.UserName = getuser.UserName;
+                    user.Picture = getuser.Picture;
+                    user.Password = getuser.Password;
+                    user.UserName = getuser.Login;
+                    await _userManager.UpdateAsync(user);
+                    return RedirectToAction("Index", "Home");
+
+
+                }
+            }
+            
+            return RedirectToAction("Index","Home");
+
+
+        }
+
     }
 }

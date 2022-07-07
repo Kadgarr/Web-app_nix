@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using BL.DtoEntities;
 using PL.Models;
+using DL.Entities;
 
 namespace PL.Mapping
 {
@@ -12,6 +13,7 @@ namespace PL.Mapping
         public AutoMapperProfilePL_BL()
         {
             CreateMap<UserView, UserDTO>().ReverseMap();
+            CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<AlbumView, AlbumDTO>().ReverseMap(); 
             CreateMap<GenreView, GenreDTO>().ReverseMap();
             CreateMap<SingerView, SingerDTO>().ReverseMap();
