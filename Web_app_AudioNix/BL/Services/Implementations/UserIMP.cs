@@ -58,7 +58,7 @@ namespace BL.Services.Implementations
         {
             var list = _mapper.Map<List<UserDTO>>(await unityOfWork.UserRep.GetListAsync());
 
-            var sortedlist = list.OrderByDescending(l => l.Login);
+            var sortedlist = list.OrderByDescending(l => l.UserName);
 
             return sortedlist;
         }
@@ -67,7 +67,7 @@ namespace BL.Services.Implementations
         {
             var list = _mapper.Map<List<UserDTO>>(await unityOfWork.UserRep.GetListAsync());
 
-            var sortedlist = list.OrderBy(l => l.Login);
+            var sortedlist = list.OrderBy(l => l.UserName);
 
             return sortedlist;
         }

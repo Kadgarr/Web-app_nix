@@ -6,7 +6,7 @@ namespace PL.Models.AccountViewModels
     {
 
         [Required(ErrorMessage = "Укажите имя пользователя")]
-        public string Login { get; set; }
+        public string UserName { get; set; }
 
         [Required(ErrorMessage = "Укажите электронный адресс")]
         [EmailAddress]

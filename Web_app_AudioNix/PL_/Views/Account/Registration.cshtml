@@ -38,9 +38,9 @@
        @* is-invalid*@
         <div style="color:red" asp-validation-summary="ModelOnly"></div>
         <div class="mb-3">
-            <label asp-for="Login" class="form-label">Введите логин</label><br />
-            <input class="form-control" type="text" id="fieldLogin" asp-for="Login" placeholder="Введите логин!"  />
-            <span class="spanValid" asp-validation-for="Login"></span>
+            <label asp-for="UserName" class="form-label">Введите логин</label><br />
+            <input class="form-control" type="text" id="fieldLogin" asp-for="UserName" placeholder="Введите логин!"  />
+            <span class="spanValid" asp-validation-for="UserName"></span>
 
         </div>
         <div class="mb-3">
@@ -70,7 +70,7 @@
         </div>
      
           <div>
-            <button class="btn btn-primary" @*style="background-color:black"*@ type="submit">Зарегистрироваться</button>
+            <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
         </div>
     </form>
 </body>

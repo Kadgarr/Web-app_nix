@@ -5,7 +5,31 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YouMusLib</title>
+     <style>
+            .one a{
+                    background-color: black;
+                    color: #FFA500;
+                    border: solid;
+                    border-width: medium;
+                    text-decoration: none;
+                    border-radius: 12px;
+                    border-color: #FFA500;
+            }
 
+           .one a:hover,
+           .one a:focus
+            {
+                background-color: #D2691E;
+                border-width: medium;
+                border-color: black;
+                color: black;
+            }
+
+
+        .spanValid{
+            color:red;
+        }
+    </style>
 </head>
 <body>
     <h3>Личный кабинет </h3>
@@ -25,9 +49,10 @@
             <div>
             <input type="hidden" asp-for="Id" />
         </div>
+     
         <div class="form-group">
-            <label asp-for="Login">UserName</label><br />
-            <input type="text" asp-for="Login" class="form-control" value="@User.Identity.Name" style="width:50%" readonly/>
+            <label asp-for="UserName">UserName</label><br />
+            <input type="text" asp-for="UserName" class="form-control" value="@User.Identity.Name" style="width:50%" readonly/>
         </div>
         <div class="form-group">
             <label asp-for="Email">Email</label><br />
@@ -35,12 +60,16 @@
         </div>
         <div class="form-group">
             <label asp-for="Date_of_registration">Дата регистрации</label><br />
-            <input type="date" asp-for="Date_of_registration" value="@Model.Date_of_registration" class="form-control" style="width:50%" readonly/>
-        </div>
+            <input type="datetime" asp-for="Date_of_registration" value="@Model.Date_of_registration" class="form-control" style="width:50%" readonly/>
+        </div><br />
            
-        <div>
-            <a  class="nav-link link-warning" asp-controller="Account" asp-action="EditProfile" asp-route-name="@User.Identity.Name" >Редактировать профиль</a>
-        </div>
+       <div>
+           <p class="one">
+                  <a  asp-controller="Account" asp-action="EditProfile" asp-route-name="@User.Identity.Name">Редактировать профиль</a>
+            </p>
+       </div>
+            
+          
         </div>
      
     </div>

@@ -108,7 +108,7 @@ namespace PL.Controllers
             if (ModelState.IsValid)
             {
 
-                User user = new User {Id= Guid.NewGuid().ToString(), UserName = model.Login, Email = model.Email, Password = model.Password, Picture = model.Picture, Date_of_registration=DateTime.Today };
+                User user = new User {Id= Guid.NewGuid().ToString(), UserName = model.UserName, Email = model.Email, Password = model.Password, Picture = model.Picture, Date_of_registration=DateTime.Today };
           
             
                 var result = await _userManager.CreateAsync(user, model.Password);
@@ -135,7 +135,7 @@ namespace PL.Controllers
             //var user = _mapper.Map<UserView>(await _userManager.FindByNameAsync(name));
             var user = await _userManager.FindByNameAsync(name);
 
-            var userDTO = _mapper.Map<UserDTO>(await userIMP.GetItemAsync(user.Login));
+            var userDTO = _mapper.Map<UserDTO>(await userIMP.GetItemAsync(user.UserName));
 
             var userView = _mapper.Map<UserView>(userDTO);
 
@@ -153,7 +153,7 @@ namespace PL.Controllers
         {
             var user = await _userManager.FindByIdAsync(name);
 
-            var userDTO = _mapper.Map<UserDTO>(await userIMP.GetItemAsync(user.Login));
+            var userDTO = _mapper.Map<UserDTO>(await userIMP.GetItemAsync(name));
 
             var userView = _mapper.Map<UserView>(userDTO);
 
@@ -169,27 +169,34 @@ namespace PL.Controllers
         [HttpPost]
         public async Task<IActionResult> EditProfile(UserView getuser)
         {
-            Console.WriteLine("======ID ПОЛЬЗОВАТЕЛЯ======= :" + getuser.Email);
-            User user = await _userManager.FindByIdAsync(getuser.Id);
-            if (ModelState.IsValid)
-            {
-           
-                if (user != null)
-                {
-                    //var userDTO = await userIMP.GetItemAsync(getuser.Login);
-                    user.Email = getuser.Email;
-                    //user.UserName = getuser.UserName;
-                    user.Picture = getuser.Picture;
-                    user.Password = getuser.Password;
-                    user.UserName = getuser.Login;
-                    await _userManager.UpdateAsync(user);
-                    return RedirectToAction("Index", "Home");
 
 
-                }
-            }
+
             
-            return RedirectToAction("Index","Home");
+            User user = await _userManager.FindByIdAsync(getuser.Id);
+            Console.WriteLine("======ID ПОЛЬЗОВАТЕЛЯ======= :" + user.UserName);
+            if (user != null)
+            {
+                //var userDTO = await userIMP.GetItemAsync(getuser.Login);
+                user.Email = getuser.Email;
+                //user.UserName = getuser.UserName;
+                if (getuser.Picture == null)
+                    user.Picture = "0";
+                else
+                user.Picture = "/Images/"+getuser.Picture;
+                
+                user.Password = getuser.Password;
+                user.UserName = getuser.UserName;
+                await _userManager.UpdateAsync(user);
+                return RedirectToAction("Index", "Home");
+
+
+            }
+            else
+                return NotFound();
+           
+            
+           // return RedirectToAction("Index","Home");
 
 
         }

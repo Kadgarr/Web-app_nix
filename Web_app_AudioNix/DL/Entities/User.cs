@@ -21,7 +21,7 @@ namespace DL.Entities
         [StringLength(40, MinimumLength = 3)]
         public string Picture { get; set; }
 
-        public string Login { get; set; }
+        public override string UserName { get; set; }
         [Required]
         [StringLength(25, MinimumLength = 6, ErrorMessage = "Введите допустимое количество символов (минимум 6)")]
         public string Password { get; set; }

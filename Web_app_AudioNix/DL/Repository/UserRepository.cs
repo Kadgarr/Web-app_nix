@@ -41,7 +41,7 @@ namespace DL.Repository
 
         public async Task<User> GetItemAsync(string name)
         {
-            return await db.Users.AsNoTracking().FirstOrDefaultAsync(a => a.Login == name);
+            return await db.Users.AsNoTracking().FirstOrDefaultAsync(a => a.UserName == name);
         }
 
         public async Task<IEnumerable<User>> GetListAsync()
