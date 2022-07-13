@@ -3,6 +3,7 @@ using DL;
 using DL.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PL;
 using PL.Mapping;
 
 
@@ -22,6 +23,7 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Web_app_AudioNix"), b =>
                     b.MigrationsAssembly("DL")));
 builder.Services.AddScoped<ApplicationContext>();
+builder.Services.AddScoped <RoleInitializer>();
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationContext>();
 

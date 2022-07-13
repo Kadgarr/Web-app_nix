@@ -19,6 +19,7 @@ namespace PL.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         private readonly ILogger<HomeController> _logger;
         private readonly IMapper _mapper;
@@ -27,18 +28,19 @@ namespace PL.Controllers
 
         private ApplicationContext db;
 
-        public AccountController(ApplicationContext db, ILogger<HomeController> logger, UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(ApplicationContext db, ILogger<HomeController> logger, UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> _roleManager)
         {
             _logger = logger;
             _userManager = userManager;
             _signInManager = signInManager;
+            this._roleManager = _roleManager;
             this.db = db;
-            
+                
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new AutoMapperProfilePL_BL());
             });
-
+              
             _mapper = mappingConfig.CreateMapper();
 
             userIMP = new UserIMP(db);
@@ -116,6 +118,7 @@ namespace PL.Controllers
                 {
 
                     await _signInManager.SignInAsync(user, false);
+                    await RoleInitializer.InitializeUserAsync(user, _userManager, _roleManager);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -169,9 +172,6 @@ namespace PL.Controllers
         [HttpPost]
         public async Task<IActionResult> EditProfile(UserView getuser)
         {
-
-
-
             
             User user = await _userManager.FindByIdAsync(getuser.Id);
             Console.WriteLine("======ID ПОЛЬЗОВАТЕЛЯ======= :" + user.UserName);

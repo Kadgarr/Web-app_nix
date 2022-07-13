@@ -13,7 +13,7 @@ namespace PL.Mapping
         public AutoMapperProfilePL_BL()
         {
             CreateMap<UserView, UserDTO>().ReverseMap();
-            CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<User, UserView>().ReverseMap();
             CreateMap<AlbumView, AlbumDTO>().ReverseMap(); 
             CreateMap<GenreView, GenreDTO>().ReverseMap();
             CreateMap<SingerView, SingerDTO>().ReverseMap();
