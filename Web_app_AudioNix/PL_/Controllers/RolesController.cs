@@ -2,6 +2,7 @@
 using BL.Services.Implementations;
 using DL;
 using DL.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PL.Mapping;
@@ -9,6 +10,7 @@ using PL.Models;
 
 namespace PL.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RolesController : Controller
     {
         RoleManager<IdentityRole> _roleManager;
@@ -95,10 +97,12 @@ namespace PL.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> EditUserRoles(string userId, List<string> roles)
+        public async Task<IActionResult> EditUserRoles(string Id, List<string> roles)
         {
             // получаем пользователя
-            User user = await _userManager.FindByIdAsync(userId);
+            Console.WriteLine("===========ID USERVIEW==========: "+ Id);
+            User user = await _userManager.FindByIdAsync(Id);
+            Console.WriteLine("===========ID USER==========: " + user.Id);
             if (user != null)
             {
                 // получем список ролей пользователя
@@ -107,14 +111,19 @@ namespace PL.Controllers
                 var allRoles = _roleManager.Roles.ToList();
                 // получаем список ролей, которые были добавлены
                 var addedRoles = roles.Except(userRoles);
+
+                foreach (var name in addedRoles)
+                {
+                    Console.WriteLine("=============НАЗВАНИЕ РОЛИ: ");
+                }
                 // получаем роли, которые были удалены
-                var removedRoles = userRoles.Except(roles);
+                var removedRoles = userRoles.ToList().Except(roles);
 
                 await _userManager.AddToRolesAsync(user, addedRoles);
 
                 await _userManager.RemoveFromRolesAsync(user, removedRoles);
 
-                return RedirectToAction("UserList");
+                return RedirectToAction("UserList", _mapper.Map<List<UserView>>(_userManager.Users.ToList()));
             }
 
             return NotFound();

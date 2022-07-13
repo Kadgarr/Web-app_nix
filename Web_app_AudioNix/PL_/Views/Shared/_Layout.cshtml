@@ -36,10 +36,10 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                             <li><a class="dropdown-item" href="~/Song/AddSong">Список песен</a></li>
-                            <li><a class="dropdown-item" href="~/Song/AddSong">Добавить песню</a></li>
-
                             @if (User.IsInRole("Admin"))
                             {
+                                
+                            <li><a class="dropdown-item" href="~/Song/AddSong">Добавить песню</a></li>
 
                             }
                         </ul>
@@ -53,10 +53,10 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="~/Genre/GenreList">Список жанров</a></li>
-                            <li><a class="dropdown-item" href="~/Genre/AddGenre">Добавить жанр</a></li>
+                            
                             @if (User.IsInRole("Admin"))
                             {
-
+                                <li><a class="dropdown-item" href="~/Genre/AddGenre">Добавить жанр</a></li>
                             }
                         </ul>
 
@@ -68,10 +68,10 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="~/Song/AddSong">Список исполнителей</a></li>
-                            <a class="dropdown-item" href="~/Singer/AddSinger"> Добавить исполнителя</a>
+                          
                             @if (User.IsInRole("Admin"))
                             {
-
+                                  <a class="dropdown-item" href="~/Singer/AddSinger"> Добавить исполнителя</a>
                             }
                         </ul>
 
@@ -83,10 +83,10 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="~/Song/">Список песен</a></li>
-                            <a class="dropdown-item" href="~/Album/AddAlbum"> Добавить альбом</a>
+                           
                             @if (User.IsInRole("Admin"))
                             {
-
+                                 <a class="dropdown-item" href="~/Album/AddAlbum"> Добавить альбом</a>
                             }
                         </ul>
 
@@ -114,16 +114,18 @@
                         }
 
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/Roles/UserList" style="color:lightgray">Список пользователей</a>
-                        @if (User.IsInRole("Admin"))
+                     @if (User.IsInRole("Admin"))
                         {
-                            
+                          <li class="nav-item">
+                        <a class="nav-link" href="~/Roles/UserList" style="color:lightgray">Список пользователей</a>
+                       
+                        </li>
+                        <li class="nav-item">
+                             <a class="nav-link" href="~/Roles/IndexRoles" style="color:lightgray">Роли</a>
+                        </li>
                         }
-                    </li>
-                    <li class="nav-item">
-                         <a class="nav-link" href="~/Roles/IndexRoles" style="color:lightgray">Роли</a>
-                    </li>
+                  
+                    
                 </ul>
                 <form class="d-flex w-50">
                     <input class="form-control" style="margin-right:5%; margin-left:5%" type="text" name="Search" placeholder="Поиск" />
@@ -138,8 +140,6 @@
         <div class="row ">
 
             <div class="col-5 col-md col-sm col-lg ">
-
-
                 <nav class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg bg-light border border-3 border-warning rounded-3 w-50" style="margin: 0 auto; margin-top:5%">
                     <div style="font-size:130%;">LeftNavPanel</div>
         </nav>

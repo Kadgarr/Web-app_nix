@@ -6,8 +6,7 @@ namespace PL
     public class RoleInitializer
     {
     
-        public RoleInitializer() { 
-        }
+        
         public static async Task InitializeUserAsync(User user, UserManager<User> _userManager, RoleManager<IdentityRole> _roleManager)
         {
 
@@ -22,23 +21,25 @@ namespace PL
         {
             string adminEmail = "maximbozhik@yandex.ua";
             string password = "Maxim2000%";
-            if (await roleManager.FindByNameAsync("admin") == null)
+
+            if (await roleManager.FindByNameAsync("Admin") == null)
             {
                 await roleManager.CreateAsync(new IdentityRole("Admin"));
             }
-            if (await roleManager.FindByNameAsync("user") == null)
+            if (await roleManager.FindByNameAsync("User") == null)
             {
                 await roleManager.CreateAsync(new IdentityRole("User"));
             }
             if (await userManager.FindByNameAsync(adminEmail) == null)
             {
-                User admin = new User { Email = adminEmail, UserName = adminEmail };
+                User admin = new User { Id = Guid.NewGuid().ToString(), Email = adminEmail, UserName = "Administrator", Password=password, Picture= "0" };
                 IdentityResult result = await userManager.CreateAsync(admin, password);
 
                 if (result.Succeeded)
                 {
-                    Console.WriteLine("RESULT:  " + admin.Email);
-                    await userManager.AddToRoleAsync(admin, "admin");
+                    Console.WriteLine("========== TRUE ==========");
+                    Console.WriteLine("================RESULT:  " + admin.Email);
+                    await userManager.AddToRoleAsync(admin, "Admin");
                 }
             }
         }

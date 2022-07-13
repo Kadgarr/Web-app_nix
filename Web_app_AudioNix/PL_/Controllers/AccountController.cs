@@ -110,7 +110,7 @@ namespace PL.Controllers
             if (ModelState.IsValid)
             {
 
-                User user = new User {Id= Guid.NewGuid().ToString(), UserName = model.UserName, Email = model.Email, Password = model.Password, Picture = model.Picture, Date_of_registration=DateTime.Today };
+                User user = new User {Id= Guid.NewGuid().ToString(), UserName = model.UserName, Email = model.Email, Password =model.Password, Picture = "/Images/"+model.Picture, Date_of_registration=DateTime.Today };
           
             
                 var result = await _userManager.CreateAsync(user, model.Password);
