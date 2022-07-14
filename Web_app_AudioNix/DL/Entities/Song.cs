@@ -20,7 +20,7 @@ namespace DL.Entities
         public DateTime Date_of_release { get; set; }
         [Required]
         [Range(10,600,ErrorMessage ="Вы вышли за пределы диапазона значений длительности от 10 до 600 секунд!")]
-        public int Duration { get; set; }
+        public string Source { get; set; }
         public string Picture { get; set; }
 
         public Singer IdSingerNavigation { get; set; }

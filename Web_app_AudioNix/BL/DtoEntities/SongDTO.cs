@@ -21,13 +21,12 @@ namespace BL.DtoEntities
         [Required]
         [Range(10,600,ErrorMessage ="Вы вышли за пределы диапазона значений длительности от 10 до 600 секунд!")]
         public int Duration { get; set; }
+        public string Source { get; set; }
         public string Picture { get; set; }
-      
-
         public SingerDTO IdSingerNavigation { get; set; }
         public AlbumDTO IdAlbumNavigation { get; set; }
 
-        public List<Genres_of_MusicDTO> Genres_music { get; set; }
+        public virtual List<Genres_of_MusicDTO> Genres_music { get; set; }
 
     }
 }

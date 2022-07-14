@@ -1,10 +1,32 @@
-﻿<!DOCTYPE html>
+﻿@model PL.Models.SongView
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YouMusLib</title>
+     <style>
+        .btn-primary {
+            background-color: black;
+            color: #FFA500;
+            border-width: medium;
+            border-radius: 12px;
+            border-color: #FFA500;
+        }
 
+            .btn-primary:hover,
+            .btn-primary:focus,
+            .btn-primary:visited {
+                background-color: #D2691E;
+                border-width: medium;
+                border-color: black;
+                color: black;
+            }
+
+        .spanValid{
+            color:red;
+        }
+    </style>
 </head>
     <body>
         <h3>Форма добавления песни</h3>
@@ -14,38 +36,41 @@
         <form method="post">
 
             <div>
-                <label for="Name_of_song">Название песни</label><br />
-                <input type="text" name="Name_of_song" /><br />
+                <label class="form-label" >Название песни</label><br />
+                <input class="form-control" type="text" asp-for="Name_of_song" /><br />
+            </div>
+            <div>
+                <label class="form-label" asp-for="Source"> Загрузите трек</label><br />
+                <input class="form-control" type="file" asp-for="Source"><br />
+            </div>
+            <div>
+                <label class="form-label" asp-for="Picture">  Выберите изображение:</label><br />
+                <input class="form-control" type="file" asp-for="Picture" /><br>
             </div>
 
             <div>
-                <label for="Picture">  Выберите изображение:</label><br />
-                <input type="file" name="Picture" /><br>
+                <label class="form-label" asp-for="Date_of_release"> Выберите дату релиза</label><br />
+                <input class="form-control" type="datetime" asp-for="Date_of_release"><br />
             </div>
 
             <div>
-                <label for="Description"> Выберите дату релиза</label><br />
-                <textarea type="text" name="Date_of_release"></textarea><br />
-            </div>
-
-            <div>
-                <label> Выберите исполнителя песни </label><br />
-                <select name="SingerId">
+                <label class="form-label"> Выберите исполнителя песни </label><br />
+                <select class="form-control" name="SingerId">
                     <option>исполнитель1</option>
                     <option>исполнитель2</option>
                 </select>
             </div>
 
             <div>
-                <label> Выберите альбом, которому пренадлежит песня </label><br />
-                <select name="SingerId">
+                <label class="form-label"> Выберите альбом, которому пренадлежит песня </label><br />
+                <select class="form-control" name="SingerId">
                     <option>альбом1</option>
                     <option>альбом2</option>
                 </select>
             </div>
 
             <div>
-                <submit value="Добавить" />
+                <button  class="btn btn-primary" type="submit" > Добавить </button> 
             </div>
         </form>
     </body>

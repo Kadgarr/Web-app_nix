@@ -35,12 +35,10 @@
 
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-                            <li><a class="dropdown-item" href="~/Song/AddSong">Список песен</a></li>
+                            <li><a class="dropdown-item" href="~/Song/SongList">Список песен</a></li>
                             @if (User.IsInRole("Admin"))
                             {
-                                
-                            <li><a class="dropdown-item" href="~/Song/AddSong">Добавить песню</a></li>
-
+                                <li><a class="dropdown-item" href="~/Song/AddSong">Добавить песню</a></li>
                             }
                         </ul>
 

@@ -21,12 +21,15 @@ namespace PL.Models
         [Required]
         [Range(10,600,ErrorMessage ="Вы вышли за пределы диапазона значений длительности от 10 до 600 секунд!")]
         public int Duration { get; set; }
-        public Image Picture { get; set; }
+
+        [Required]
+        public string Source { get; set; }
+        public string Picture { get; set; }
 
         public SingerView IdSingerNavigation { get; set; }
         public AlbumView IdAlbumNavigation { get; set; }
 
-        public List<Genres_of_MusicView> Genres_music { get; set; }
+        public virtual List<Genres_of_MusicView> Genres_music { get; set; }
 
     }
 }
