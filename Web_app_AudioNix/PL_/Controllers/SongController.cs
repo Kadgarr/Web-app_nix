@@ -4,6 +4,7 @@ using DL;
 using Microsoft.AspNetCore.Mvc;
 using PL.Mapping;
 using PL.Models;
+using PL.Models.Pagination;
 
 namespace PL.Controllers
 {
@@ -36,9 +37,22 @@ namespace PL.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> SongList()
+        public async Task<IActionResult> SongList(int page = 1)
         {
-            return View(songViews = _mapper.Map<List<SongView>>(await songIMP.GetAll()));
+
+            int pageSize = 3;   // количество элементов на странице
+            songViews = _mapper.Map<List<SongView>>(await songIMP.GetAll());
+            var count =  songViews.Count;
+            var items =  songViews.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                Songs = items
+            };
+            return View(viewModel);
+          
         }
 
         [HttpGet]

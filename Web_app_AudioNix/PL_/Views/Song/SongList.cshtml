@@ -1,5 +1,7 @@
-﻿@model IEnumerable<PL.Models.SongView>
-
+﻿@using PL.Models.Pagination
+@*@model IEnumerable<PL.Models.SongView>*@
+@model IndexViewModel
+@addTagHelper *, PagerApp
 @{
     ViewData["Title"] = "SongList";
 }
@@ -31,7 +33,7 @@
     <thead>
         <tr>
             <th>
-               
+               Обложка
             </th>
             <th>
                 Название песни
@@ -45,11 +47,11 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Songs) {
         <tr>
          
             <td>
-                <img src="@item.Picture" width="30%" height="30%" class="img-thumbnail" />
+                <img src="@item.Picture" @*width="30%" height="30%"*@ class="img-thumbnail" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name_of_song)
@@ -69,11 +71,9 @@
 }
     </tbody>
 </table>
-
-<foooter >
-        <nav class="navbar-expand-sm navbar-expand-md navbar-expand-lg">    
+  <nav class="navbar-expand-sm navbar-expand-md navbar-expand-lg">    
             <ul class="pagination justify-content-center " style="margin:auto;  color: #f29913">
-                <li class="bg-secondary border border-2 border-secondary ">
+                @*<li class="bg-secondary border border-2 border-secondary ">
                     <a class="page-link"style="color: #a36507" href="#" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
@@ -88,9 +88,22 @@
                     <a class="page-link" style="color: #a36507" href="#" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
-                </li>
+                </li>*@
+
+                @for(int i=1; i < Model.PageViewModel.PageNumber; i++)
+                {
+                   <li class="page-item border border-2 border-secondary"><a asp-route-page="@i"class="page-link">@(i)</a></li>
+                }
+
+                 <li class="page-item active border border-2 border-secondary" aria-current="page"><a class="page-link">@Model.PageViewModel.PageNumber</a></li>
+
+                @for(int i=Model.PageViewModel.PageNumber+1; i <=Model.PageViewModel.TotalPages; i++)
+                {
+                   <li class="page-item border border-2 border-secondary"><a asp-route-page="@i"class="page-link">@(i)</a></li>
+                }
             </ul>
         </nav>
-    </foooter>
+
 </body>
 
+</html>
